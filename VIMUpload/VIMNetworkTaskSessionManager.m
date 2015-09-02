@@ -34,12 +34,12 @@
     self = [super initWithBaseURL:url sessionConfiguration:configuration];
     if (self)
     {        
-#if (defined(ADHOC) || defined(RELEASE))
+//#if (defined(ADHOC) || defined(RELEASE))
         self.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
         self.securityPolicy.allowInvalidCertificates = NO;
         self.securityPolicy.validatesCertificateChain = NO;
         self.securityPolicy.validatesDomainName = YES;
-#endif
+//#endif
     }
     
     return self;
