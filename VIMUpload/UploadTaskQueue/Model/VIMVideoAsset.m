@@ -1,6 +1,6 @@
 //
 //  VideoAsset.m
-//  VimeoUploader
+//  VIMUpload
 //
 //  Created by Alfred Hanssen on 12/25/14.
 //  Copyright (c) 2014-2015 Vimeo (https://vimeo.com)

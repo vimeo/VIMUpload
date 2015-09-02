@@ -1,6 +1,6 @@
 //
 //  Debugger.h
-//  VimeoUploader
+//  VIMUpload
 //
 //  Created by Hanssen, Alfie on 1/5/15.
 //  Copyright (c) 2014-2015 Vimeo (https://vimeo.com)

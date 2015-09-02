@@ -1,6 +1,6 @@
 //
 //  ConnectionAwareUploadQueue.h
-//  VimeoUploader
+//  VIMUpload
 //
 //  Created by Hanssen, Alfie on 12/22/14.
 //  Copyright (c) 2014-2015 Vimeo (https://vimeo.com)
