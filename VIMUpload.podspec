@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "7.0"
 
   s.source       = { :git => "https://github.com/vimeo/VIMUpload.git", :tag => s.version.to_s }
-  s.source_files  = "VIMUpload", "VIMUpload/**/*.{h,m}"
+  s.source_files  = "VIMUpload", "VIMUpload/**/*.{h,m,cer}"
   s.exclude_files = "VIMUpload/Exclude"
 
   s.frameworks = "Foundation", "AVFoundation", "AssetsLibrary", "Photos", "MobileCoreServices", "UIKit"
