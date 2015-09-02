@@ -1,0 +1,489 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		38E9097F70BD083CD16C086D /* libPods-VIMUpload.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 709F06A525389B1B4E96315A /* libPods-VIMUpload.a */; };
+		509F94591B976F75002DE92E /* AFHTTPSessionManager+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F94271B976F75002DE92E /* AFHTTPSessionManager+Extensions.m */; };
+		509F945A1B976F75002DE92E /* AVAsset+Filesize.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F94291B976F75002DE92E /* AVAsset+Filesize.m */; };
+		509F945B1B976F75002DE92E /* NSError+VIMUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F942B1B976F75002DE92E /* NSError+VIMUpload.m */; };
+		509F945C1B976F75002DE92E /* NSURLSessionConfiguration+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F942D1B976F75002DE92E /* NSURLSessionConfiguration+Extensions.m */; };
+		509F945D1B976F75002DE92E /* PHAsset+Filesize.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F942F1B976F75002DE92E /* PHAsset+Filesize.m */; };
+		509F945E1B976F75002DE92E /* VIMNetworkTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F94321B976F75002DE92E /* VIMNetworkTask.m */; };
+		509F945F1B976F75002DE92E /* VIMNetworkTaskQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F94341B976F75002DE92E /* VIMNetworkTaskQueue.m */; };
+		509F94601B976F75002DE92E /* VIMTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F94371B976F75002DE92E /* VIMTask.m */; };
+		509F94611B976F75002DE92E /* VIMTaskQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F94391B976F75002DE92E /* VIMTaskQueue.m */; };
+		509F94621B976F75002DE92E /* VIMTaskQueueArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F943B1B976F75002DE92E /* VIMTaskQueueArchiver.m */; };
+		509F94631B976F75002DE92E /* VIMVideoAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F94411B976F75002DE92E /* VIMVideoAsset.m */; };
+		509F94641B976F75002DE92E /* VIMVideoMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F94431B976F75002DE92E /* VIMVideoMetadata.m */; };
+		509F94651B976F75002DE92E /* VIMActivateTicketTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F94461B976F75002DE92E /* VIMActivateTicketTask.m */; };
+		509F94661B976F75002DE92E /* VIMAddMetadataTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F94481B976F75002DE92E /* VIMAddMetadataTask.m */; };
+		509F94671B976F75002DE92E /* VIMCreateTicketTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F944A1B976F75002DE92E /* VIMCreateTicketTask.m */; };
+		509F94681B976F75002DE92E /* VIMTempFileMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F944C1B976F75002DE92E /* VIMTempFileMaker.m */; };
+		509F94691B976F75002DE92E /* VIMUploadFileTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F944E1B976F75002DE92E /* VIMUploadFileTask.m */; };
+		509F946A1B976F75002DE92E /* VIMUploadTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F94501B976F75002DE92E /* VIMUploadTask.m */; };
+		509F946B1B976F75002DE92E /* VIMUploadTaskQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F94521B976F75002DE92E /* VIMUploadTaskQueue.m */; };
+		509F946C1B976F75002DE92E /* VIMNetworkTaskSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F94541B976F75002DE92E /* VIMNetworkTaskSessionManager.m */; };
+		509F946D1B976F75002DE92E /* VIMTaskQueueDebugger.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F94561B976F75002DE92E /* VIMTaskQueueDebugger.m */; };
+		509F946E1B976F75002DE92E /* VIMUploadTaskQueueTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F94581B976F75002DE92E /* VIMUploadTaskQueueTracker.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		509F94171B976F11002DE92E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		20331A1631E8A2C415F7BF15 /* Pods-VIMUpload.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIMUpload.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VIMUpload/Pods-VIMUpload.debug.xcconfig"; sourceTree = "<group>"; };
+		509F94191B976F11002DE92E /* libVIMUpload.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVIMUpload.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		509F94261B976F75002DE92E /* AFHTTPSessionManager+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AFHTTPSessionManager+Extensions.h"; sourceTree = "<group>"; };
+		509F94271B976F75002DE92E /* AFHTTPSessionManager+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AFHTTPSessionManager+Extensions.m"; sourceTree = "<group>"; };
+		509F94281B976F75002DE92E /* AVAsset+Filesize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVAsset+Filesize.h"; sourceTree = "<group>"; };
+		509F94291B976F75002DE92E /* AVAsset+Filesize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVAsset+Filesize.m"; sourceTree = "<group>"; };
+		509F942A1B976F75002DE92E /* NSError+VIMUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+VIMUpload.h"; sourceTree = "<group>"; };
+		509F942B1B976F75002DE92E /* NSError+VIMUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+VIMUpload.m"; sourceTree = "<group>"; };
+		509F942C1B976F75002DE92E /* NSURLSessionConfiguration+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLSessionConfiguration+Extensions.h"; sourceTree = "<group>"; };
+		509F942D1B976F75002DE92E /* NSURLSessionConfiguration+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLSessionConfiguration+Extensions.m"; sourceTree = "<group>"; };
+		509F942E1B976F75002DE92E /* PHAsset+Filesize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PHAsset+Filesize.h"; sourceTree = "<group>"; };
+		509F942F1B976F75002DE92E /* PHAsset+Filesize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PHAsset+Filesize.m"; sourceTree = "<group>"; };
+		509F94311B976F75002DE92E /* VIMNetworkTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMNetworkTask.h; sourceTree = "<group>"; };
+		509F94321B976F75002DE92E /* VIMNetworkTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMNetworkTask.m; sourceTree = "<group>"; };
+		509F94331B976F75002DE92E /* VIMNetworkTaskQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMNetworkTaskQueue.h; sourceTree = "<group>"; };
+		509F94341B976F75002DE92E /* VIMNetworkTaskQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMNetworkTaskQueue.m; sourceTree = "<group>"; };
+		509F94361B976F75002DE92E /* VIMTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMTask.h; sourceTree = "<group>"; };
+		509F94371B976F75002DE92E /* VIMTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMTask.m; sourceTree = "<group>"; };
+		509F94381B976F75002DE92E /* VIMTaskQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMTaskQueue.h; sourceTree = "<group>"; };
+		509F94391B976F75002DE92E /* VIMTaskQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMTaskQueue.m; sourceTree = "<group>"; };
+		509F943A1B976F75002DE92E /* VIMTaskQueueArchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMTaskQueueArchiver.h; sourceTree = "<group>"; };
+		509F943B1B976F75002DE92E /* VIMTaskQueueArchiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMTaskQueueArchiver.m; sourceTree = "<group>"; };
+		509F943C1B976F75002DE92E /* VIMTaskQueueArchiverProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMTaskQueueArchiverProtocol.h; sourceTree = "<group>"; };
+		509F943F1B976F75002DE92E /* VIMUploadState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMUploadState.h; sourceTree = "<group>"; };
+		509F94401B976F75002DE92E /* VIMVideoAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMVideoAsset.h; sourceTree = "<group>"; };
+		509F94411B976F75002DE92E /* VIMVideoAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMVideoAsset.m; sourceTree = "<group>"; };
+		509F94421B976F75002DE92E /* VIMVideoMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMVideoMetadata.h; sourceTree = "<group>"; };
+		509F94431B976F75002DE92E /* VIMVideoMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMVideoMetadata.m; sourceTree = "<group>"; };
+		509F94451B976F75002DE92E /* VIMActivateTicketTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMActivateTicketTask.h; sourceTree = "<group>"; };
+		509F94461B976F75002DE92E /* VIMActivateTicketTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMActivateTicketTask.m; sourceTree = "<group>"; };
+		509F94471B976F75002DE92E /* VIMAddMetadataTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMAddMetadataTask.h; sourceTree = "<group>"; };
+		509F94481B976F75002DE92E /* VIMAddMetadataTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMAddMetadataTask.m; sourceTree = "<group>"; };
+		509F94491B976F75002DE92E /* VIMCreateTicketTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMCreateTicketTask.h; sourceTree = "<group>"; };
+		509F944A1B976F75002DE92E /* VIMCreateTicketTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMCreateTicketTask.m; sourceTree = "<group>"; };
+		509F944B1B976F75002DE92E /* VIMTempFileMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMTempFileMaker.h; sourceTree = "<group>"; };
+		509F944C1B976F75002DE92E /* VIMTempFileMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMTempFileMaker.m; sourceTree = "<group>"; };
+		509F944D1B976F75002DE92E /* VIMUploadFileTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMUploadFileTask.h; sourceTree = "<group>"; };
+		509F944E1B976F75002DE92E /* VIMUploadFileTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMUploadFileTask.m; sourceTree = "<group>"; };
+		509F944F1B976F75002DE92E /* VIMUploadTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMUploadTask.h; sourceTree = "<group>"; };
+		509F94501B976F75002DE92E /* VIMUploadTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMUploadTask.m; sourceTree = "<group>"; };
+		509F94511B976F75002DE92E /* VIMUploadTaskQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMUploadTaskQueue.h; sourceTree = "<group>"; };
+		509F94521B976F75002DE92E /* VIMUploadTaskQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMUploadTaskQueue.m; sourceTree = "<group>"; };
+		509F94531B976F75002DE92E /* VIMNetworkTaskSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMNetworkTaskSessionManager.h; sourceTree = "<group>"; };
+		509F94541B976F75002DE92E /* VIMNetworkTaskSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMNetworkTaskSessionManager.m; sourceTree = "<group>"; };
+		509F94551B976F75002DE92E /* VIMTaskQueueDebugger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMTaskQueueDebugger.h; sourceTree = "<group>"; };
+		509F94561B976F75002DE92E /* VIMTaskQueueDebugger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMTaskQueueDebugger.m; sourceTree = "<group>"; };
+		509F94571B976F75002DE92E /* VIMUploadTaskQueueTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMUploadTaskQueueTracker.h; sourceTree = "<group>"; };
+		509F94581B976F75002DE92E /* VIMUploadTaskQueueTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMUploadTaskQueueTracker.m; sourceTree = "<group>"; };
+		709F06A525389B1B4E96315A /* libPods-VIMUpload.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VIMUpload.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBE094916258D10082814BC3 /* Pods-VIMUpload.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIMUpload.release.xcconfig"; path = "Pods/Target Support Files/Pods-VIMUpload/Pods-VIMUpload.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		509F94161B976F11002DE92E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38E9097F70BD083CD16C086D /* libPods-VIMUpload.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		509F94101B976F11002DE92E = {
+			isa = PBXGroup;
+			children = (
+				509F941B1B976F11002DE92E /* VIMUpload */,
+				509F941A1B976F11002DE92E /* Products */,
+				B0B7BE97C80CF449859D7884 /* Pods */,
+				74E0FA28A14DFEBD92D32F72 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		509F941A1B976F11002DE92E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				509F94191B976F11002DE92E /* libVIMUpload.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		509F941B1B976F11002DE92E /* VIMUpload */ = {
+			isa = PBXGroup;
+			children = (
+				509F94251B976F75002DE92E /* Categories */,
+				509F94301B976F75002DE92E /* NetworkTaskQueue */,
+				509F94351B976F75002DE92E /* TaskQueue */,
+				509F943D1B976F75002DE92E /* UploadTaskQueue */,
+				509F94531B976F75002DE92E /* VIMNetworkTaskSessionManager.h */,
+				509F94541B976F75002DE92E /* VIMNetworkTaskSessionManager.m */,
+				509F94551B976F75002DE92E /* VIMTaskQueueDebugger.h */,
+				509F94561B976F75002DE92E /* VIMTaskQueueDebugger.m */,
+				509F94571B976F75002DE92E /* VIMUploadTaskQueueTracker.h */,
+				509F94581B976F75002DE92E /* VIMUploadTaskQueueTracker.m */,
+			);
+			path = VIMUpload;
+			sourceTree = "<group>";
+		};
+		509F94251B976F75002DE92E /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				509F94261B976F75002DE92E /* AFHTTPSessionManager+Extensions.h */,
+				509F94271B976F75002DE92E /* AFHTTPSessionManager+Extensions.m */,
+				509F94281B976F75002DE92E /* AVAsset+Filesize.h */,
+				509F94291B976F75002DE92E /* AVAsset+Filesize.m */,
+				509F942A1B976F75002DE92E /* NSError+VIMUpload.h */,
+				509F942B1B976F75002DE92E /* NSError+VIMUpload.m */,
+				509F942C1B976F75002DE92E /* NSURLSessionConfiguration+Extensions.h */,
+				509F942D1B976F75002DE92E /* NSURLSessionConfiguration+Extensions.m */,
+				509F942E1B976F75002DE92E /* PHAsset+Filesize.h */,
+				509F942F1B976F75002DE92E /* PHAsset+Filesize.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		509F94301B976F75002DE92E /* NetworkTaskQueue */ = {
+			isa = PBXGroup;
+			children = (
+				509F94311B976F75002DE92E /* VIMNetworkTask.h */,
+				509F94321B976F75002DE92E /* VIMNetworkTask.m */,
+				509F94331B976F75002DE92E /* VIMNetworkTaskQueue.h */,
+				509F94341B976F75002DE92E /* VIMNetworkTaskQueue.m */,
+			);
+			path = NetworkTaskQueue;
+			sourceTree = "<group>";
+		};
+		509F94351B976F75002DE92E /* TaskQueue */ = {
+			isa = PBXGroup;
+			children = (
+				509F94361B976F75002DE92E /* VIMTask.h */,
+				509F94371B976F75002DE92E /* VIMTask.m */,
+				509F94381B976F75002DE92E /* VIMTaskQueue.h */,
+				509F94391B976F75002DE92E /* VIMTaskQueue.m */,
+				509F943A1B976F75002DE92E /* VIMTaskQueueArchiver.h */,
+				509F943B1B976F75002DE92E /* VIMTaskQueueArchiver.m */,
+				509F943C1B976F75002DE92E /* VIMTaskQueueArchiverProtocol.h */,
+			);
+			path = TaskQueue;
+			sourceTree = "<group>";
+		};
+		509F943D1B976F75002DE92E /* UploadTaskQueue */ = {
+			isa = PBXGroup;
+			children = (
+				509F943E1B976F75002DE92E /* Model */,
+				509F94441B976F75002DE92E /* Subtasks */,
+				509F944F1B976F75002DE92E /* VIMUploadTask.h */,
+				509F94501B976F75002DE92E /* VIMUploadTask.m */,
+				509F94511B976F75002DE92E /* VIMUploadTaskQueue.h */,
+				509F94521B976F75002DE92E /* VIMUploadTaskQueue.m */,
+			);
+			path = UploadTaskQueue;
+			sourceTree = "<group>";
+		};
+		509F943E1B976F75002DE92E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				509F943F1B976F75002DE92E /* VIMUploadState.h */,
+				509F94401B976F75002DE92E /* VIMVideoAsset.h */,
+				509F94411B976F75002DE92E /* VIMVideoAsset.m */,
+				509F94421B976F75002DE92E /* VIMVideoMetadata.h */,
+				509F94431B976F75002DE92E /* VIMVideoMetadata.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		509F94441B976F75002DE92E /* Subtasks */ = {
+			isa = PBXGroup;
+			children = (
+				509F94451B976F75002DE92E /* VIMActivateTicketTask.h */,
+				509F94461B976F75002DE92E /* VIMActivateTicketTask.m */,
+				509F94471B976F75002DE92E /* VIMAddMetadataTask.h */,
+				509F94481B976F75002DE92E /* VIMAddMetadataTask.m */,
+				509F94491B976F75002DE92E /* VIMCreateTicketTask.h */,
+				509F944A1B976F75002DE92E /* VIMCreateTicketTask.m */,
+				509F944B1B976F75002DE92E /* VIMTempFileMaker.h */,
+				509F944C1B976F75002DE92E /* VIMTempFileMaker.m */,
+				509F944D1B976F75002DE92E /* VIMUploadFileTask.h */,
+				509F944E1B976F75002DE92E /* VIMUploadFileTask.m */,
+			);
+			path = Subtasks;
+			sourceTree = "<group>";
+		};
+		74E0FA28A14DFEBD92D32F72 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				709F06A525389B1B4E96315A /* libPods-VIMUpload.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B0B7BE97C80CF449859D7884 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				20331A1631E8A2C415F7BF15 /* Pods-VIMUpload.debug.xcconfig */,
+				FBE094916258D10082814BC3 /* Pods-VIMUpload.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		509F94181B976F11002DE92E /* VIMUpload */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 509F94221B976F11002DE92E /* Build configuration list for PBXNativeTarget "VIMUpload" */;
+			buildPhases = (
+				EFB766119FB7783BA45589E2 /* Check Pods Manifest.lock */,
+				509F94151B976F11002DE92E /* Sources */,
+				509F94161B976F11002DE92E /* Frameworks */,
+				509F94171B976F11002DE92E /* CopyFiles */,
+				1D99275B0F01E9323815B5DC /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VIMUpload;
+			productName = VIMUpload;
+			productReference = 509F94191B976F11002DE92E /* libVIMUpload.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		509F94111B976F11002DE92E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = Vimeo;
+				TargetAttributes = {
+					509F94181B976F11002DE92E = {
+						CreatedOnToolsVersion = 7.0;
+					};
+				};
+			};
+			buildConfigurationList = 509F94141B976F11002DE92E /* Build configuration list for PBXProject "VIMUpload" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 509F94101B976F11002DE92E;
+			productRefGroup = 509F941A1B976F11002DE92E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				509F94181B976F11002DE92E /* VIMUpload */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1D99275B0F01E9323815B5DC /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VIMUpload/Pods-VIMUpload-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EFB766119FB7783BA45589E2 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		509F94151B976F11002DE92E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				509F946A1B976F75002DE92E /* VIMUploadTask.m in Sources */,
+				509F945C1B976F75002DE92E /* NSURLSessionConfiguration+Extensions.m in Sources */,
+				509F94651B976F75002DE92E /* VIMActivateTicketTask.m in Sources */,
+				509F945F1B976F75002DE92E /* VIMNetworkTaskQueue.m in Sources */,
+				509F94671B976F75002DE92E /* VIMCreateTicketTask.m in Sources */,
+				509F946D1B976F75002DE92E /* VIMTaskQueueDebugger.m in Sources */,
+				509F945A1B976F75002DE92E /* AVAsset+Filesize.m in Sources */,
+				509F946E1B976F75002DE92E /* VIMUploadTaskQueueTracker.m in Sources */,
+				509F94661B976F75002DE92E /* VIMAddMetadataTask.m in Sources */,
+				509F94601B976F75002DE92E /* VIMTask.m in Sources */,
+				509F945D1B976F75002DE92E /* PHAsset+Filesize.m in Sources */,
+				509F946C1B976F75002DE92E /* VIMNetworkTaskSessionManager.m in Sources */,
+				509F94591B976F75002DE92E /* AFHTTPSessionManager+Extensions.m in Sources */,
+				509F946B1B976F75002DE92E /* VIMUploadTaskQueue.m in Sources */,
+				509F945E1B976F75002DE92E /* VIMNetworkTask.m in Sources */,
+				509F945B1B976F75002DE92E /* NSError+VIMUpload.m in Sources */,
+				509F94611B976F75002DE92E /* VIMTaskQueue.m in Sources */,
+				509F94641B976F75002DE92E /* VIMVideoMetadata.m in Sources */,
+				509F94631B976F75002DE92E /* VIMVideoAsset.m in Sources */,
+				509F94621B976F75002DE92E /* VIMTaskQueueArchiver.m in Sources */,
+				509F94681B976F75002DE92E /* VIMTempFileMaker.m in Sources */,
+				509F94691B976F75002DE92E /* VIMUploadFileTask.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		509F94201B976F11002DE92E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		509F94211B976F11002DE92E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		509F94231B976F11002DE92E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20331A1631E8A2C415F7BF15 /* Pods-VIMUpload.debug.xcconfig */;
+			buildSettings = {
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		509F94241B976F11002DE92E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FBE094916258D10082814BC3 /* Pods-VIMUpload.release.xcconfig */;
+			buildSettings = {
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		509F94141B976F11002DE92E /* Build configuration list for PBXProject "VIMUpload" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				509F94201B976F11002DE92E /* Debug */,
+				509F94211B976F11002DE92E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		509F94221B976F11002DE92E /* Build configuration list for PBXNativeTarget "VIMUpload" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				509F94231B976F11002DE92E /* Debug */,
+				509F94241B976F11002DE92E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 509F94111B976F11002DE92E /* Project object */;
+}
