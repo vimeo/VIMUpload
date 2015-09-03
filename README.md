@@ -1,12 +1,12 @@
 # VIMUpload
 
-`VIMUpload` is an Objective-C library that enables upload of videos to Vimeo. The upload system supports background session uploads from apps and extensions. Its core component is a serial task queue that can execute composite tasks (tasks with subtasks). 
+`VIMUpload` is an Objective-C library that enables upload of videos to Vimeo. Its core component is a serial task queue that executes composite tasks (tasks with subtasks). 
 
-The video upload system uses a background configured NSURLSession to manage a queue of video uploads (i.e. uploads continue regardless of whether the app is in the foreground or background). 
+The upload system uses a background configured NSURLSession to manage a queue of video uploads (i.e. uploads continue regardless of whether the app is in the foreground or background). It can be configured to manage two background sessions if you plan on initiating uploads from within an app as well as an extension.
 
-The upload queue can be paused and resumed, and is automatically paused/resumed when losing/gaining a connection. It can also be configured to restrict uploads to wifi only. 
+The upload queue can be paused and resumed, and it is automatically paused/resumed when losing/gaining an internet connection. It can also be configured to restrict uploads to wifi only. 
 
-The queue is persisted to disk so that in the event of an app termination event it can be reconstructed to the state it was in before termination. 
+The queue is persisted to disk so that in the event of an app termination event it can be reconstructed to the state it was in before termination.
 
 ## Sample Project
 
@@ -30,7 +30,6 @@ Note that VIMUpload depends on `AFNetworking`. It will be imported as a pod.
 To be documented 
 
 ## Initialization
-
 
 When you configure VIMNetworking, set the `backgroundSessionIdentifierApp` property and include the "upload" permission in your scope. If you plan to initiate uploads from an extension, set the `backgroundSessionIdentifierExtension` and `sharedContainerID` properties as well.
 
@@ -236,10 +235,6 @@ When your UI is loaded or refreshed, associate your newly create VIMVideoAsset o
 NSArray *videoAssets = self.datasource.items; // For example
 [[VIMUploadTaskQueue sharedAppQueue] associateVideoAssetsWithUploads:videoAssets];
 ```
-
-###Repurposing the Upload System
-
-The upload system can be repurposed to manage background uploads (or downloads) from any source. The simplest way to do this is to subclass `VIMNetworkTask` and `VIMNetworkTaskQueue`, using `VIMUploadTask` and `VIMUploadTaskQueue` for inspiration. 
 
 ## License
 
