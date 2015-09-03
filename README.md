@@ -80,6 +80,8 @@ Implement the `application:andleEventsForBackgroundURLSession:completionHandler:
 }
 ```
 
+## Uploading Videos 
+
 Enqueue a `PHAsset` for upload.
 
 ```Objective-C
@@ -156,6 +158,8 @@ videoMetadata.videoPrivacy = (NSString *)VIMPrivacyValue_Private;
     
 }];
 ```
+
+## Tracking Upload State & Progress
 
 If you build UI to support pause and resume, listen for the `VIMNetworkTaskQueue_DidSuspendOrResumeNotification` notification and update your UI accordingly.
 
@@ -245,7 +249,7 @@ NSArray *videoAssets = self.datasource.items; // For example
 
 ## License
 
-`VIMNetworking` is available under the MIT license. See the LICENSE file for more info.
+`VIMUpload` is available under the MIT license. See the LICENSE file for more info.
 
 ## Questions?
 
