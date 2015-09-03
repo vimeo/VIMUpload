@@ -39,10 +39,12 @@ To be documented
 
 ## Initialization
 
+Subclass `VIMTaskQueue` and implement a singleton object:
+
 ```Objective-C
 + (instancetype)sharedAppQueue
 {
-    static VIMUploadTaskQueue *sharedInstance;
+    static MYUploadTaskQueueSubclass *sharedInstance;
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
@@ -76,8 +78,8 @@ Load your `VIMUploadTaskQueue`(s) at each app launch.
 {
     // ...
 
-    [VIMUploadTaskQueue sharedAppQueue];
-    [VIMUploadTaskQueue sharedExtensionQueue];
+    [MYUploadTaskQueueSubclass sharedAppQueue];
+    [MYUploadTaskQueueSubclass sharedExtensionQueue];
 
     return YES;
 }
@@ -88,13 +90,13 @@ Implement the `application:handleEventsForBackgroundURLSession:completionHandler
 ```Objective-C
 - (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier completionHandler:(void (^)())completionHandler
 {
-    if ([identifier isEqualToString:[SMKUploadTaskQueue sharedAppQueue].sessionManager.session.configuration.identifier])
+    if ([identifier isEqualToString:[MYUploadTaskQueueSubclass sharedAppQueue].sessionManager.session.configuration.identifier])
     {
-        [SMKUploadTaskQueue sharedAppQueue].sessionManager.completionHandler = completionHandler;
+        [MYUploadTaskQueueSubclass sharedAppQueue].sessionManager.completionHandler = completionHandler;
     }
-    else if ([identifier isEqualToString:[SMKUploadTaskQueue sharedExtensionQueue].sessionManager.session.configuration.identifier])
+    else if ([identifier isEqualToString:[MYUploadTaskQueueSubclass sharedExtensionQueue].sessionManager.session.configuration.identifier])
     {
-        [SMKUploadTaskQueue sharedExtensionQueue].sessionManager.completionHandler = completionHandler;
+        [MYUploadTaskQueueSubclass sharedExtensionQueue].sessionManager.completionHandler = completionHandler;
     }
 }
 ```
@@ -106,7 +108,7 @@ Enqueue a `PHAsset` for upload.
 ```Objective-C
 PHAsset *asset = ...;
 VIMVideoAsset *videoAsset = [[VIMVideoAsset alloc] initWithPHAsset:asset];
-[[VIMUploadTaskQueue sharedAppQueue] uploadVideoAssets:@[videoAsset]];
+[[MYUploadTaskQueueSubclass sharedAppQueue] uploadVideoAssets:@[videoAsset]];
 ```
 
 Enqueue an `AVURLAsset` for upload.
@@ -116,45 +118,45 @@ NSURL *URL = ...;
 AVURLAsset *URLAsset = [AVURLAsset assetWithURL:URL];
 BOOL canUploadFromSource = ...; // If the asset doesn't need to be copied to a tmp directory before upload, set this to YES
 VIMVideoAsset *videoAsset = [[VIMVideoAsset alloc] initWithURLAsset:URLAsset canUploadFromSource:canUploadFromSource];
-[[VIMUploadTaskQueue sharedAppQueue] uploadVideoAssets:@[videoAsset]];
+[[MYUploadTaskQueueSubclass sharedAppQueue] uploadVideoAssets:@[videoAsset]];
 ```
 
 Enqueue multiple assets for upload.
 
 ```Objective-C
 NSArray *videoAssets = @[...];
-[[VIMUploadTaskQueue sharedAppQueue] uploadVideoAssets:videoAssets];
+[[MYUploadTaskQueueSubclass sharedAppQueue] uploadVideoAssets:videoAssets];
 ```
 
 Cancel an upload.
 
 ```Objective-C
 VIMVideoAsset *videoAsset = ...;
-[[VIMUploadTaskQueue sharedAppQueue] cancelUploadForVideoAsset:videoAsset];
+[[MYUploadTaskQueueSubclass sharedAppQueue] cancelUploadForVideoAsset:videoAsset];
 ```
 
 Cancel all uploads.
 
 ```Objective-C
-[[VIMUploadTaskQueue sharedAppQueue] cancelAllUploads];
+[[MYUploadTaskQueueSubclass sharedAppQueue] cancelAllUploads];
 ```
 
 Pause all uploads.
 
 ```Objective-C
-[[VIMUploadTaskQueue sharedAppQueue] pause];
+[[MYUploadTaskQueueSubclass sharedAppQueue] pause];
 ```
 
 Resume all uploads.
 
 ```Objective-C
-[[VIMUploadTaskQueue sharedAppQueue] resume];
+[[MYUploadTaskQueueSubclass sharedAppQueue] resume];
 ```
 
 Ensure that uploads only occur when connected via wifi...or not. If `cellularUploadEnabled` is set to `NO`, the upload queue will automatically pause when leaving wifi and automatically resume when entering wifi. (Note: the queue will automatically pause/resume when the device is taken offline/online.)
 
 ```Objective-C
-[VIMUploadTaskQueue sharedAppQueue].cellularUploadEnabled = NO;
+[MYUploadTaskQueueSubclass sharedAppQueue].cellularUploadEnabled = NO;
 ```
 
 Add video metadata to an enqueued or in-progress upload.
@@ -167,7 +169,7 @@ videoMetadata.videoTitle = @"Really cool title";
 videoMetadata.videoDescription = @"Really cool description"";
 videoMetadata.videoPrivacy = (NSString *)VIMPrivacyValue_Private;
 
-[[VIMUploadTaskQueue sharedAppQueue] addMetadata:videoMetadata toVideoAsset:videoAsset withCompletionBlock:^(BOOL didAdd) {
+[[MYUploadTaskQueueSubclass sharedAppQueue] addMetadata:videoMetadata toVideoAsset:videoAsset withCompletionBlock:^(BOOL didAdd) {
     
     if (!didAdd)
     {
@@ -190,7 +192,7 @@ If you build UI to support pause and resume, listen for the `VIMNetworkTaskQueue
 
 - (void)uploadTaskQueueDidSuspendOrResume:(NSNotification *)notification
 {
-    BOOL isSuspended = [[VIMUploadTaskQueue sharedAppQueue] isSuspended];
+    BOOL isSuspended = [[MYUploadTaskQueueSubclass sharedAppQueue] isSuspended];
     [self.pauseResumeButton setSelected:isSuspended];
 }
 ```
@@ -263,7 +265,7 @@ When your UI is loaded or refreshed, associate your newly create VIMVideoAsset o
 
 ```Objective-C
 NSArray *videoAssets = self.datasource.items; // For example
-[[VIMUploadTaskQueue sharedAppQueue] associateVideoAssetsWithUploads:videoAssets];
+[[MYUploadTaskQueueSubclass sharedAppQueue] associateVideoAssetsWithUploads:videoAssets];
 ```
 
 ## License
