@@ -35,22 +35,41 @@ To be documented
 
 1. Ensure that you've verified your Vimeo account. When you create an account, you'll receive an email asking that you verify your account. Until you verify your account you will not be able to upload videos using the API. 
 2. Ensure you have been granted permission to use the "upload" scope. This permission must explicitly be granted by Vimeo API admins. You can request this permission on your app page under "Request upload access". Visit [developer.vimeo.com](https://developer.vimeo.com/).
+3. Ensure that the OAuth token that you're using to make your requests has the "upload" scope included.
 
 ## Initialization
 
-When you configure VIMNetworking, set the `backgroundSessionIdentifierApp` property and include the "upload" permission in your scope. If you plan to initiate uploads from an extension, set the `backgroundSessionIdentifierExtension` and `sharedContainerID` properties as well.
+```Objective-C
++ (instancetype)sharedAppQueue
+{
+    static VIMUploadTaskQueue *sharedInstance;
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        
+      	NSURL *url = [NSURL URLWithString:@"https://api.vimeo.com/"];
 
-```Obejctive-C
-VIMSessionConfiguration *config = [[VIMSessionConfiguration alloc] init];
-config.clientKey = @"your_client_key";
-config.clientSecret = @"your_client_secret";
-config.scope = @"private public create edit delete interact upload";
-config.backgroundSessionIdentifierApp = @"your_app_background_session_id";
-config.backgroundSessionIdentifierExtension = @"your_extension_background_session_id";
-config.sharedContainerID = @"your_shared_container_id";
+        NSURLSessionConfiguration *configuration = ...; // A background configuration with optional shared container identifier (if you plan on uploading from an extension)
+        
+    	VIMNetworkTaskSessionManager *sessionManager =  [[VIMNetworkTaskSessionManager alloc] initWithBaseURL:url sessionConfiguration:configuration];
+    	sessionManager.requestSerializer = ...;
+    	sessionManager.responseSerializer = ...;
+
+	// Where client.requestSerializer is an AFJSONRequestSerializer subclass that serializes the following information on each request:
+	// [serializer setValue:@"application/vnd.vimeo.*+json; version=3.2" forHTTPHeaderField:@"Accept"];
+	// [serializer setValue:@"Bearer your_oauth_token" forHTTPHeaderField:@"Authorization"];
+
+        sharedInstance = [[self alloc] initWithSessionManager:sessionManager];
+
+    });
+    
+    return sharedInstance;
+}
 ```
 
-Load the `VIMUploadTaskQueue`(s) at each launch.
+If you plan to initiate uploads from an extension, you will need to use a separate instance of `VIMUploadTaskQueue`, initialized with a separate `VIMNetworkTaskSessionManager`, initialized with a separate background session identifier.
+
+Load your `VIMUploadTaskQueue`(s) at each app launch.
 
 ```Objective-C
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -64,18 +83,18 @@ Load the `VIMUploadTaskQueue`(s) at each launch.
 }
 ```
 
-Implement the `application:andleEventsForBackgroundURLSession:completionHandler:` method in your AppDelegate:
+Implement the `application:handleEventsForBackgroundURLSession:completionHandler:` method in your AppDelegate:
 
 ```Objective-C
 - (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier completionHandler:(void (^)())completionHandler
 {
-    if ([identifier isEqualToString:BackgroundSessionIdentifierApp])
+    if ([identifier isEqualToString:[SMKUploadTaskQueue sharedAppQueue].sessionManager.session.configuration.identifier])
     {
-        [VIMUploadSessionManager sharedAppInstance].completionHandler = completionHandler;
+        [SMKUploadTaskQueue sharedAppQueue].sessionManager.completionHandler = completionHandler;
     }
-    else if ([identifier isEqualToString:BackgroundSessionIdentifierExtension])
+    else if ([identifier isEqualToString:[SMKUploadTaskQueue sharedExtensionQueue].sessionManager.session.configuration.identifier])
     {
-        [VIMUploadSessionManager sharedExtensionInstance].completionHandler = completionHandler;
+        [SMKUploadTaskQueue sharedExtensionQueue].sessionManager.completionHandler = completionHandler;
     }
 }
 ```
@@ -97,7 +116,7 @@ NSURL *URL = ...;
 AVURLAsset *URLAsset = [AVURLAsset assetWithURL:URL];
 BOOL canUploadFromSource = ...; // If the asset doesn't need to be copied to a tmp directory before upload, set this to YES
 VIMVideoAsset *videoAsset = [[VIMVideoAsset alloc] initWithURLAsset:URLAsset canUploadFromSource:canUploadFromSource];
-[[VIMUploadTaskQueue sharedExtensionQueue] uploadVideoAssets:@[videoAsset]];
+[[VIMUploadTaskQueue sharedAppQueue] uploadVideoAssets:@[videoAsset]];
 ```
 
 Enqueue multiple assets for upload.
