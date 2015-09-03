@@ -29,7 +29,16 @@ Note that VIMUpload depends on `AFNetworking`. It will be imported as a pod.
 
 ###Git Submodules
 
-To be documented 
+Add `VIMUpload` and `AFNetworking` (Release 2.5.4) as submodules of your git repository. 
+
+```
+git submodule add git@github.com:vimeo/VIMUpload.git
+git submodule add git@github.com:AFNetworking/AFNetworking.git
+```
+
+Add each submodule's classes to your project / target. 
+
+If you're also including `VIMNetworking` in your project / target, note that both `VIMUpload` and `VIMNetworking` include the `Certificate/digicert-sha2.cer` file (this file is used for cert pinning). You'll have to remove one of the `digicert-sha2.cer` files from your target to avoid a "Multiple build commands for output file..." warning.
 
 ## Prerequisites
 
