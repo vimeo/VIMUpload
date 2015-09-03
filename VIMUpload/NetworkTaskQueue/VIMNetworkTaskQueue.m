@@ -39,7 +39,7 @@ static const NSString *CellularEnabledKey = @"cellular_enabled";
 
 @interface VIMNetworkTaskQueue ()
 
-@property (nonatomic, strong) VIMNetworkTaskSessionManager *sessionManager;
+@property (nonatomic, strong, readwrite) VIMNetworkTaskSessionManager *sessionManager;
 
 @property (nonatomic, assign, getter=isSuspendedByUser) BOOL suspendedByUser;
 
