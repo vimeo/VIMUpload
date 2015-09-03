@@ -8,9 +8,11 @@ The upload queue can be paused and resumed, and it is automatically paused/resum
 
 The queue is persisted to disk so that in the event of an app termination event it can be reconstructed to the state it was in before termination.
 
+If you're looking to interact with the Vimeo API for things other than video upload, check out [VIMNetworking](https://github.com/vimeo/VIMNetworking).
+
 ## Sample Project
 
-Check out the sample project [here](https://github.com/vimeo/Pegasus).
+Check out the [Pegasus] (https://github.com/vimeo/Pegasus) sample project.
 
 ## Setup
 
