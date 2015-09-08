@@ -134,6 +134,13 @@ static const NSString *VIMUploadFileTaskName = @"FILE_UPLOAD";
     [task resume];
 }
 
+- (void)cancel
+{
+    [self deleteLocalFile];
+    
+    [super cancel];
+}
+
 - (BOOL)didSucceed
 {
     return self.success;
@@ -156,8 +163,8 @@ static const NSString *VIMUploadFileTaskName = @"FILE_UPLOAD";
     if (self.source && [fileManager fileExistsAtPath:self.source])
     {
         NSError *error = nil;
-        [fileManager removeItemAtPath:self.source error:&error];
-        if (error)
+        BOOL success = [fileManager removeItemAtPath:self.source error:&error];
+        if (!success)
         {
             [VIMTaskQueueDebugger postLocalNotificationWithContext:self.sessionManager.session.configuration.identifier message:[NSString stringWithFormat:@"%@ error deleting local file %@", self.name, error]];
         }
