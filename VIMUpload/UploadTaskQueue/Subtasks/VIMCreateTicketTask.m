@@ -271,6 +271,8 @@ static const NSString *VIMCreateRecordTaskName = @"CREATE";
         return;
     }
 
+    // TODO: Why do we not extract these upfront? [AH] 9/7/2015
+    
     NSString *uploadURI = [self.responseDictionary objectForKey:@"upload_link_secure"];
     NSString *activationURI = [self.responseDictionary objectForKey:@"complete_uri"];
     if (uploadURI == nil || activationURI == nil)
