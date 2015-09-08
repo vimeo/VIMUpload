@@ -58,13 +58,10 @@ Subclass `VIMTaskQueue` and implement a singleton object:
     
     dispatch_once(&onceToken, ^{
         
-      	NSURL *url = [NSURL URLWithString:@"https://api.vimeo.com/"];
-
         NSURLSessionConfiguration *configuration = ...; // A background configuration with optional shared container identifier (if you plan on uploading from an extension)
         
-    	VIMNetworkTaskSessionManager *sessionManager =  [[VIMNetworkTaskSessionManager alloc] initWithBaseURL:url sessionConfiguration:configuration];
+    	VIMUploadSessionManager *sessionManager =  [[VIMUploadSessionManager alloc] initWithSessionConfiguration:configuration];
     	sessionManager.requestSerializer = ...;
-    	sessionManager.responseSerializer = ...;
 
 	// Where client.requestSerializer is an AFJSONRequestSerializer subclass that serializes the following information on each request:
 	// [serializer setValue:@"application/vnd.vimeo.*+json; version=3.2" forHTTPHeaderField:@"Accept"];
