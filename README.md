@@ -29,7 +29,16 @@ Note that VIMUpload depends on `AFNetworking`. It will be imported as a pod.
 
 ###Git Submodules
 
-To be documented 
+Add `VIMUpload` and `AFNetworking` (Release 2.5.4) as submodules of your git repository. 
+
+```
+git submodule add git@github.com:vimeo/VIMUpload.git
+git submodule add git@github.com:AFNetworking/AFNetworking.git
+```
+
+Add each submodule's classes to your project / target. 
+
+If you're also including `VIMNetworking` in your project / target, note that both `VIMUpload` and `VIMNetworking` include the `Certificate/digicert-sha2.cer` file (this file is used for cert pinning). You'll have to remove one of the `digicert-sha2.cer` files from your target to avoid a "Multiple build commands for output file..." warning.
 
 ## Prerequisites
 
@@ -49,13 +58,11 @@ Subclass `VIMTaskQueue` and implement a singleton object:
     
     dispatch_once(&onceToken, ^{
         
-      	NSURL *url = [NSURL URLWithString:@"https://api.vimeo.com/"];
-
-        NSURLSessionConfiguration *configuration = ...; // A background configuration with optional shared container identifier (if you plan on uploading from an extension)
+        // A background configuration with optional shared container identifier (if you plan on uploading from an extension)
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration backgroundSessionConfigurationWithID:@"your_session_identifier" sharedContainerID:@"your_optional_shared_container_identifier"]; 
         
-    	VIMNetworkTaskSessionManager *sessionManager =  [[VIMNetworkTaskSessionManager alloc] initWithBaseURL:url sessionConfiguration:configuration];
+    	VIMUploadSessionManager *sessionManager =  [[VIMUploadSessionManager alloc] initWithSessionConfiguration:configuration];
     	sessionManager.requestSerializer = ...;
-    	sessionManager.responseSerializer = ...;
 
 	// Where client.requestSerializer is an AFJSONRequestSerializer subclass that serializes the following information on each request:
 	// [serializer setValue:@"application/vnd.vimeo.*+json; version=3.2" forHTTPHeaderField:@"Accept"];
