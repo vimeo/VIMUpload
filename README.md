@@ -58,7 +58,8 @@ Subclass `VIMTaskQueue` and implement a singleton object:
     
     dispatch_once(&onceToken, ^{
         
-        NSURLSessionConfiguration *configuration = ...; // A background configuration with optional shared container identifier (if you plan on uploading from an extension)
+        // A background configuration with optional shared container identifier (if you plan on uploading from an extension)
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration backgroundSessionConfigurationWithID:@"your_session_identifier" sharedContainerID:@"your_optional_shared_container_identifier"]; 
         
     	VIMUploadSessionManager *sessionManager =  [[VIMUploadSessionManager alloc] initWithSessionConfiguration:configuration];
     	sessionManager.requestSerializer = ...;
