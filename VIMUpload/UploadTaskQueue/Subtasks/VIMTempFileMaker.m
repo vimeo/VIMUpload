@@ -30,6 +30,9 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "AVAsset+Filesize.h"
 #import "NSError+VIMUpload.h"
+#import "NSURL+Extensions.h"
+
+static NSString *const UploadsDirectoryName = @"uploads";
 
 @interface VIMTempFileMaker ()
 
@@ -261,43 +264,15 @@
 
 - (NSString *)uniqueAppGroupPathWithExtension:(NSString *)extension
 {
-    NSString *basePath = [self appGroupExportsDirectory];
+    NSURL *baseURL = [NSURL uploadURLWithDirectoryName:UploadsDirectoryName sharedContainerIdentifier:self.sharedContainerIdentifier];
     
     NSString *filename = [[NSProcessInfo processInfo] globallyUniqueString];
     
     filename = [filename stringByAppendingPathExtension:extension];
     
-    NSString *path = [basePath stringByAppendingPathComponent:filename];
+    NSURL *URL = [baseURL URLByAppendingPathComponent:filename];
     
-    return path;
-}
-
-- (NSString *)appGroupExportsDirectory
-{
-    NSURL *groupURL = nil;
-    
-    if (self.sharedContainerIdentifier)
-    {
-        groupURL = [[NSFileManager new] containerURLForSecurityApplicationGroupIdentifier:self.sharedContainerIdentifier];
-    }
-    
-    if (groupURL == nil)
-    {
-        groupURL = [NSURL URLWithString:NSTemporaryDirectory()];
-    }
-    
-    NSString *uploadsDirectoryName = @"uploads";
-    NSString *groupPath = [[groupURL path] stringByAppendingPathComponent:uploadsDirectoryName];
-    
-    NSError *error = nil;
-    if (![[NSFileManager defaultManager] createDirectoryAtPath:groupPath withIntermediateDirectories:YES attributes:nil error:&error])
-    {
-        NSLog(@"Unable to create export directory: %@", error);
-        
-        return [NSTemporaryDirectory() stringByAppendingPathComponent:uploadsDirectoryName];
-    }
-    
-    return groupPath;
+    return URL.absoluteString;
 }
 
 - (BOOL)checkDiskSpaceForURLAsset:(AVAsset *)asset error:(NSError **)error
@@ -319,8 +294,10 @@
     uint64_t totalDiskSpace = 0;
     uint64_t availableDiskSpace = 0;
     
+    NSURL *baseURL = [NSURL uploadURLWithDirectoryName:UploadsDirectoryName sharedContainerIdentifier:self.sharedContainerIdentifier];
+
     NSError *error = nil;
-    NSDictionary *dictionary = [[NSFileManager defaultManager] attributesOfFileSystemForPath:[self appGroupExportsDirectory] error: &error];
+    NSDictionary *dictionary = [[NSFileManager defaultManager] attributesOfFileSystemForPath:baseURL.absoluteString error:&error];
     
     if (dictionary)
     {
