@@ -43,4 +43,6 @@ extern NSString *const VIMActivateRecordTaskErrorDomain;
 
 - (BOOL)isInsufficientLocalStorageError;
 
+- (BOOL)isMetadataFailedToSaveError;
+
 @end

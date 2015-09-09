@@ -67,4 +67,9 @@ NSString *const VIMActivateRecordTaskErrorDomain = @"VIMActivateRecordTaskErrorD
     return self.code == VIMUploadErrorCodeInsufficientLocalStorage;
 }
 
+- (BOOL)isMetadataFailedToSaveError
+{
+    return [self.domain isEqualToString:VIMMetadataTaskErrorDomain];
+}
+
 @end
