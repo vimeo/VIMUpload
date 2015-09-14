@@ -287,7 +287,14 @@ static const NSString *VIMCreateRecordTaskName = @"CREATE";
 
     if (task.error)
     {
-        self.error = [NSError errorWithError:task.error domain:VIMCreateRecordTaskErrorDomain URLResponse:task.response];
+//        // TODO: Do we need to manually extract this? [AH] 9/15/2015
+//        NSData *data = nil;
+//        if (self.responseDictionary)
+//        {
+//            data = [NSJSONSerialization dataWithJSONObject:self.responseDictionary options:NSJSONWritingPrettyPrinted error:nil];
+//        }
+        
+        self.error = [NSError errorWithError:task.error domain:VIMCreateRecordTaskErrorDomain URLResponse:task.response data:nil];
         
         [self taskDidComplete];
         

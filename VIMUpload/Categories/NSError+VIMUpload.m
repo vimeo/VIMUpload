@@ -35,7 +35,7 @@ NSString *const VIMActivateRecordTaskErrorDomain = @"VIMActivateRecordTaskErrorD
 
 @implementation NSError (VIMUpload)
 
-+ (NSError *)errorWithError:(NSError *)error domain:(NSString *)domain URLResponse:(NSURLResponse *)response
++ (NSError *)errorWithError:(NSError *)error domain:(NSString *)domain URLResponse:(NSURLResponse *)response data:(NSData *)data
 {
     if (error == nil)
     {
@@ -52,6 +52,11 @@ NSString *const VIMActivateRecordTaskErrorDomain = @"VIMActivateRecordTaskErrorD
     if (response && userInfo[AFNetworkingOperationFailingURLResponseErrorKey] == nil)
     {
         userInfo[AFNetworkingOperationFailingURLResponseErrorKey] = response;
+    }
+    
+    if (data && userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] == nil)
+    {
+        userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] = data;
     }
     
     if (domain == nil)
