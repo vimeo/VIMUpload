@@ -287,14 +287,14 @@ static const NSString *VIMCreateRecordTaskName = @"CREATE";
 
     if (task.error)
     {
-//        // TODO: Do we need to manually extract this? [AH] 9/15/2015
+//        // TODO: Do we need to manually extract this? And manually add it to the error? [AH] 9/15/2015
 //        NSData *data = nil;
 //        if (self.responseDictionary)
 //        {
 //            data = [NSJSONSerialization dataWithJSONObject:self.responseDictionary options:NSJSONWritingPrettyPrinted error:nil];
 //        }
         
-        self.error = [NSError errorWithError:task.error domain:VIMCreateRecordTaskErrorDomain URLResponse:task.response data:nil];
+        self.error = [NSError errorWithError:task.error domain:VIMCreateRecordTaskErrorDomain URLResponse:task.response];
         
         [self taskDidComplete];
         
