@@ -195,46 +195,76 @@ static const NSString *VIMCreateRecordTaskName = @"CREATE";
     {
         return;
     }
+    
+    // Removing these checks to catch only 1 error here: error parsing JSON from NSData object.
+    // In order to allow the taskDidComplete: method to catch all other errors.
+    // Seems like this will give us access to response data etc. automatically. [AH] 9/15/2015
 
-    if (downloadTask.error)
-    {
-        self.error = [NSError errorWithError:downloadTask.error domain:VIMCreateRecordTaskErrorDomain URLResponse:downloadTask.response];
-        
-        return;
-    }
+//    if (downloadTask.error)
+//    {
+//        self.error = [NSError errorWithError:downloadTask.error domain:VIMCreateRecordTaskErrorDomain URLResponse:downloadTask.response];
+//        
+//        return;
+//    }
+//    
+//    NSData *data = nil;
+//    if (location)
+//    {
+//        data = [NSData dataWithContentsOfURL:location];
+//    }
+//
+//    // Why would an invalid status code not be flagged with an NSError and caught in the above conditional?
+//    // Currently we are seeing errors caught by this check rather than the one above. [AH] 9/14/2015
+//
+//    NSHTTPURLResponse *HTTPResponse = ((NSHTTPURLResponse *)downloadTask.response);
+//    if (HTTPResponse && (HTTPResponse.statusCode < 200 || HTTPResponse.statusCode > 299))
+//    {
+//        NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:@{NSLocalizedDescriptionKey : @"Invalid status code.",
+//                                                                                       AFNetworkingOperationFailingURLResponseErrorKey: HTTPResponse}];
+//        
+//        if (data)
+//        {
+//            userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] = data;
+//        }
+//        
+//        self.error = [NSError errorWithDomain:VIMCreateRecordTaskErrorDomain code:0 userInfo:userInfo];
+//        
+//        return;
+//    }
+//    
+//    if (location == nil)
+//    {
+//        self.error = [NSError errorWithDomain:VIMCreateRecordTaskErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : @"No location provided."}];
+//        
+//        return;
+//    }
+//    
+//    if (data == nil)
+//    {
+//        self.error = [NSError errorWithDomain:VIMCreateRecordTaskErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : @"No file at location."}];
+//        
+//        return;
+//    }
     
-    NSHTTPURLResponse *HTTPResponse = ((NSHTTPURLResponse *)downloadTask.response);
-    if (HTTPResponse.statusCode < 200 || HTTPResponse.statusCode > 299)
+    NSData *data = nil;
+    if (location)
     {
-        self.error = [NSError errorWithDomain:VIMCreateRecordTaskErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : @"Invalid status code."}];
-        
-        return;
+        data = [NSData dataWithContentsOfURL:location];
     }
-    
-    if (location == nil)
+
+    NSDictionary *dictionary = nil;
+    if (data)
     {
-        self.error = [NSError errorWithDomain:VIMCreateRecordTaskErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : @"No location provided."}];
-        
-        return;
+        NSError *error = nil;
+        dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+        if (error)
+        {
+            self.error = [NSError errorWithDomain:VIMCreateRecordTaskErrorDomain code:error.code userInfo:error.userInfo];
+            
+            return;
+        }
     }
-    
-    NSData *data = [NSData dataWithContentsOfURL:location];
-    if (data == nil)
-    {
-        self.error = [NSError errorWithDomain:VIMCreateRecordTaskErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : @"No file at location."}];
-        
-        return;
-    }
-    
-    NSError *error = nil;
-    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
-    if (error)
-    {
-        self.error = [NSError errorWithDomain:VIMCreateRecordTaskErrorDomain code:error.code userInfo:error.userInfo];
-        
-        return;
-    }
-    
+
     self.responseDictionary = dictionary;
 }
 
@@ -255,13 +285,6 @@ static const NSString *VIMCreateRecordTaskName = @"CREATE";
         return;
     }
 
-    if (self.error)
-    {
-        [self taskDidComplete];
-        
-        return;
-    }
-
     if (task.error)
     {
         self.error = [NSError errorWithError:task.error domain:VIMCreateRecordTaskErrorDomain URLResponse:task.response];
@@ -271,8 +294,16 @@ static const NSString *VIMCreateRecordTaskName = @"CREATE";
         return;
     }
 
-    // TODO: Why do we not extract these upfront? [AH] 9/7/2015
+    // The only error that this could possibly be would result when attempting to parse JSON out of NSData
+    // [AH] 9/15/2015
     
+    if (self.error)
+    {
+        [self taskDidComplete];
+        
+        return;
+    }
+
     NSString *uploadURI = [self.responseDictionary objectForKey:@"upload_link_secure"];
     NSString *activationURI = [self.responseDictionary objectForKey:@"complete_uri"];
     if (uploadURI == nil || activationURI == nil)
