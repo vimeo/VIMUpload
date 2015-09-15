@@ -171,10 +171,15 @@ static const NSString *VIMMetadataTaskName = @"METADATA";
         return;
     }
     
+    // Why would an invalid status code not be flagged with an NSError and caught in the above conditional? [AH] 9/14/2015
+
     NSHTTPURLResponse *HTTPResponse = ((NSHTTPURLResponse *)task.response);
-    if (HTTPResponse.statusCode < 200 || HTTPResponse.statusCode > 299)
+    if (HTTPResponse && (HTTPResponse.statusCode < 200 || HTTPResponse.statusCode > 299))
     {
-        self.error = [NSError errorWithDomain:VIMMetadataTaskErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : @"Invalid status code."}];
+        NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"Invalid status code.",
+                                   AFNetworkingOperationFailingURLResponseErrorKey: HTTPResponse};
+
+        self.error = [NSError errorWithDomain:VIMMetadataTaskErrorDomain code:0 userInfo:userInfo];
         
         [self taskDidComplete];
         

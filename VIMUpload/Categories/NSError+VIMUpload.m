@@ -49,10 +49,15 @@ NSString *const VIMActivateRecordTaskErrorDomain = @"VIMActivateRecordTaskErrorD
         [userInfo addEntriesFromDictionary:error.userInfo];
     }
     
-    if (response)
+    if (response && userInfo[AFNetworkingOperationFailingURLResponseErrorKey] == nil)
     {
         userInfo[AFNetworkingOperationFailingURLResponseErrorKey] = response;
     }
+    
+//    if (data && userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] == nil)
+//    {
+//        userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] = data;
+//    }
     
     if (domain == nil)
     {
