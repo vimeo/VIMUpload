@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		38E9097F70BD083CD16C086D /* libPods-VIMUpload.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 709F06A525389B1B4E96315A /* libPods-VIMUpload.a */; };
+		500F465A1BA2003F000EA6B4 /* VIMUploadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 500F46591BA2003F000EA6B4 /* VIMUploadTests.m */; };
+		500F465C1BA2003F000EA6B4 /* libVIMUpload.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 509F94191B976F11002DE92E /* libVIMUpload.a */; settings = {ASSET_TAGS = (); }; };
 		509F94591B976F75002DE92E /* AFHTTPSessionManager+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F94271B976F75002DE92E /* AFHTTPSessionManager+Extensions.m */; };
 		509F945A1B976F75002DE92E /* AVAsset+Filesize.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F94291B976F75002DE92E /* AVAsset+Filesize.m */; };
 		509F945B1B976F75002DE92E /* NSError+VIMUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F942B1B976F75002DE92E /* NSError+VIMUpload.m */; };
@@ -32,6 +34,16 @@
 		509F946E1B976F75002DE92E /* VIMUploadTaskQueueTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F94581B976F75002DE92E /* VIMUploadTaskQueueTracker.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		500F465D1BA2003F000EA6B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 509F94111B976F11002DE92E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 509F94181B976F11002DE92E;
+			remoteInfo = VIMUpload;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		509F94171B976F11002DE92E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -46,6 +58,9 @@
 
 /* Begin PBXFileReference section */
 		20331A1631E8A2C415F7BF15 /* Pods-VIMUpload.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIMUpload.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VIMUpload/Pods-VIMUpload.debug.xcconfig"; sourceTree = "<group>"; };
+		500F46571BA2003F000EA6B4 /* VIMUploadTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VIMUploadTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		500F46591BA2003F000EA6B4 /* VIMUploadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIMUploadTests.m; sourceTree = "<group>"; };
+		500F465B1BA2003F000EA6B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		509F94191B976F11002DE92E /* libVIMUpload.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVIMUpload.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		509F94261B976F75002DE92E /* AFHTTPSessionManager+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AFHTTPSessionManager+Extensions.h"; sourceTree = "<group>"; };
 		509F94271B976F75002DE92E /* AFHTTPSessionManager+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AFHTTPSessionManager+Extensions.m"; sourceTree = "<group>"; };
@@ -98,6 +113,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		500F46541BA2003F000EA6B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				500F465C1BA2003F000EA6B4 /* libVIMUpload.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		509F94161B976F11002DE92E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -109,10 +132,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		500F46581BA2003F000EA6B4 /* VIMUploadTests */ = {
+			isa = PBXGroup;
+			children = (
+				500F46591BA2003F000EA6B4 /* VIMUploadTests.m */,
+				500F465B1BA2003F000EA6B4 /* Info.plist */,
+			);
+			path = VIMUploadTests;
+			sourceTree = "<group>";
+		};
 		509F94101B976F11002DE92E = {
 			isa = PBXGroup;
 			children = (
 				509F941B1B976F11002DE92E /* VIMUpload */,
+				500F46581BA2003F000EA6B4 /* VIMUploadTests */,
 				509F941A1B976F11002DE92E /* Products */,
 				B0B7BE97C80CF449859D7884 /* Pods */,
 				74E0FA28A14DFEBD92D32F72 /* Frameworks */,
@@ -123,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				509F94191B976F11002DE92E /* libVIMUpload.a */,
+				500F46571BA2003F000EA6B4 /* VIMUploadTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -248,6 +282,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		500F46561BA2003F000EA6B4 /* VIMUploadTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 500F465F1BA2003F000EA6B4 /* Build configuration list for PBXNativeTarget "VIMUploadTests" */;
+			buildPhases = (
+				500F46531BA2003F000EA6B4 /* Sources */,
+				500F46541BA2003F000EA6B4 /* Frameworks */,
+				500F46551BA2003F000EA6B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				500F465E1BA2003F000EA6B4 /* PBXTargetDependency */,
+			);
+			name = VIMUploadTests;
+			productName = VIMUploadTests;
+			productReference = 500F46571BA2003F000EA6B4 /* VIMUploadTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		509F94181B976F11002DE92E /* VIMUpload */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 509F94221B976F11002DE92E /* Build configuration list for PBXNativeTarget "VIMUpload" */;
@@ -276,6 +328,9 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Vimeo;
 				TargetAttributes = {
+					500F46561BA2003F000EA6B4 = {
+						CreatedOnToolsVersion = 7.0;
+					};
 					509F94181B976F11002DE92E = {
 						CreatedOnToolsVersion = 7.0;
 					};
@@ -294,9 +349,20 @@
 			projectRoot = "";
 			targets = (
 				509F94181B976F11002DE92E /* VIMUpload */,
+				500F46561BA2003F000EA6B4 /* VIMUploadTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		500F46551BA2003F000EA6B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		1D99275B0F01E9323815B5DC /* Copy Pods Resources */ = {
@@ -332,6 +398,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		500F46531BA2003F000EA6B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				500F465A1BA2003F000EA6B4 /* VIMUploadTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		509F94151B976F11002DE92E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -363,7 +437,35 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		500F465E1BA2003F000EA6B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 509F94181B976F11002DE92E /* VIMUpload */;
+			targetProxy = 500F465D1BA2003F000EA6B4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		500F46601BA2003F000EA6B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = VIMUploadTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vimeo.VIMUploadTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		500F46611BA2003F000EA6B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = VIMUploadTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vimeo.VIMUploadTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		509F94201B976F11002DE92E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -465,6 +567,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		500F465F1BA2003F000EA6B4 /* Build configuration list for PBXNativeTarget "VIMUploadTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				500F46601BA2003F000EA6B4 /* Debug */,
+				500F46611BA2003F000EA6B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		509F94141B976F11002DE92E /* Build configuration list for PBXProject "VIMUpload" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
