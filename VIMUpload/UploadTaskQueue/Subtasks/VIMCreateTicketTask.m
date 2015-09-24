@@ -45,6 +45,8 @@ static const NSString *VIMCreateRecordTaskName = @"CREATE";
 @property (nonatomic, copy, readwrite) NSString *uploadURI;
 @property (nonatomic, copy, readwrite) NSString *activationURI;
 
+@property (nonatomic, strong) VIMTempFileMaker *tempFileMaker;
+
 @end
 
 @implementation VIMCreateTicketTask
@@ -365,7 +367,15 @@ static const NSString *VIMCreateRecordTaskName = @"CREATE";
 
 - (void)tempFileWithCompletionBlock:(TempFileCompletionBlock)completionBlock
 {
-    VIMTempFileMaker *fileMaker = [[VIMTempFileMaker alloc] initWithSharedContainerIdentifier:self.sessionManager.session.configuration.sharedContainerIdentifier];
+    NSString *sharedContainerIdentifier;
+    NSURLSessionConfiguration *sessionConfiguration = self.sessionManager.session.configuration;
+    
+    if ([sessionConfiguration respondsToSelector:@selector(sharedContainerIdentifier)])
+    {
+        sharedContainerIdentifier = [sessionConfiguration sharedContainerIdentifier];
+    }
+    
+    self.tempFileMaker = [[VIMTempFileMaker alloc] initWithSharedContainerIdentifier:sharedContainerIdentifier];
     
     if (self.URLAsset)
     {
@@ -378,12 +388,12 @@ static const NSString *VIMCreateRecordTaskName = @"CREATE";
         }
         else
         {
-            [fileMaker tempFileFromURLAsset:self.URLAsset completionBlock:completionBlock];
+            [self.tempFileMaker tempFileFromURLAsset:self.URLAsset completionBlock:completionBlock];
         }
     }
     else
     {
-        [fileMaker tempFileFromPHAsset:self.phAsset completionBlock:completionBlock];
+        [self.tempFileMaker tempFileFromPHAsset:self.phAsset completionBlock:completionBlock];
     }
 }
 
