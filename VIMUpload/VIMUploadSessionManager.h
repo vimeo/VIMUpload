@@ -10,6 +10,6 @@
 
 @interface VIMUploadSessionManager : VIMNetworkTaskSessionManager
 
-- (nonnull instancetype)initWithSessionConfiguration:(nonnull NSURLSessionConfiguration *)configuration;
+- (nonnull instancetype)initWithSessionConfiguration:(nullable NSURLSessionConfiguration *)configuration;
 
 @end
