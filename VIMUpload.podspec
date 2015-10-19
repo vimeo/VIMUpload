@@ -35,7 +35,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.subspec 'AFNetworking' do |ss|
-    ss.dependency	'AFNetworking', '~> 2.5.4'
+    ss.dependency	'AFNetworking', '~> 2.6.1'
   end
 
 end
