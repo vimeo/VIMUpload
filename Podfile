@@ -1,10 +1,13 @@
-# Uncomment this line to define a global platform for your project
 platform :ios, '7.0'
 
+def shared_pods
+    pod 'AFNetworking', '2.6.1'
+end
+
 target 'VIMUpload' do
-    pod 'AFNetworking', ‘2.6.1’
+    shared_pods
 end
 
 target 'VIMUploadTests' do
-    pod 'AFNetworking', ‘2.6.1’
+    shared_pods
 end
