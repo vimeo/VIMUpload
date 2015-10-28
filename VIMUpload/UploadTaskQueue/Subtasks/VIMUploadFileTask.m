@@ -97,26 +97,7 @@ static const NSString *VIMUploadFileTaskName = @"FILE_UPLOAD";
 
         return;
     }
-    
-    
-    
-    
-    
-//    NSString *destination = [NSString stringWithFormat:@"%@%@", @"https://d2xd14yos67vxl.cloudfront.net/upload?", [self.destination componentsSeparatedByString:@"?"][1]];
-//    
-//    NSError *error = nil;
-//    NSMutableURLRequest *request = [self.sessionManager.requestSerializer requestWithMethod:@"PUT" URLString:destination parameters:nil error:&error];
-//    if (error)
-//    {
-//        self.error = [NSError errorWithDomain:VIMUploadFileTaskErrorDomain code:error.code userInfo:error.userInfo];
-//        
-//        [self taskDidComplete];
-//        
-//        return;
-//    }
-    
-    
-    
+
     NSError *error = nil;
     NSMutableURLRequest *request = [self.sessionManager.requestSerializer requestWithMethod:@"PUT" URLString:self.destination parameters:nil error:&error];
     if (error)
@@ -128,12 +109,6 @@ static const NSString *VIMUploadFileTaskName = @"FILE_UPLOAD";
         return;
     }
 
-    
-    
-    
-    
-    
-    
     NSURL *sourceURL = [NSURL fileURLWithPath:self.source];
     
     AVURLAsset *URLAsset = [AVURLAsset assetWithURL:sourceURL];

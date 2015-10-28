@@ -33,6 +33,6 @@ typedef void(^FileSizeInBytesCompletionBlock)(uint64_t fileSizeInBytes, NSError 
 
 - (uint64_t)calculateFileSizeInBytes; // Synchronous
 
-- (uint64_t)calculateFileSizeInBytesWithCompletionBlock:(nonnull FileSizeInBytesCompletionBlock)completionBlock;
+- (void)calculateFileSizeInBytesWithCompletionBlock:(nonnull FileSizeInBytesCompletionBlock)completionBlock;
 
 @end
