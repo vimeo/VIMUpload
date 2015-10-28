@@ -120,11 +120,11 @@ static const NSString *VIMCreateRecordTaskName = @"CREATE";
     
     if (self.URLAsset)
     {
-        filesize = [self.URLAsset calculateFilesize];
+        filesize = [self.URLAsset calculateFileSizeInBytes];
     }
     else if (self.phAsset)
     {
-        filesize = [self.phAsset calculateFilesize];
+        filesize = [self.phAsset calculateFileSizeInBytes];
     }
     
     NSDictionary *parameters = @{@"type" : @"streaming", @"size" : @(filesize)};    

@@ -29,17 +29,17 @@
 
 @implementation PHAsset (Filesize)
 
-- (CGFloat)calculateFilesize
+- (uint64_t)calculateFileSizeInBytes
 {
-    __block CGFloat size = 0;
+    __block uint64_t size = 0;
     
     dispatch_group_t group = dispatch_group_create();
     
     dispatch_group_enter(group);
     
-    [self calculateFilesizeWithCompletionBlock:^(CGFloat fileSize, NSError *error) {
+    [self calculateFileSizeInBytesWithCompletionBlock:^(uint64_t fileSizeInBytes, NSError *error) {
        
-        size = fileSize;
+        size = fileSizeInBytes;
         
         dispatch_group_leave(group);
         
@@ -50,7 +50,7 @@
     return size;
 }
 
-- (int32_t)calculateFilesizeWithCompletionBlock:(FileSizeCompletionBlock)completionBlock
+- (uint64_t)calculateFileSizeInBytesWithCompletionBlock:(FileSizeInBytesCompletionBlock)completionBlock
 {
     PHVideoRequestOptions *options = [PHVideoRequestOptions new];
     options.deliveryMode = PHVideoRequestOptionsDeliveryModeHighQualityFormat; // TODO: How does this impact things? [AH]
@@ -58,12 +58,12 @@
 
     return [[PHImageManager defaultManager] requestAVAssetForVideo:self options:options resultHandler:^(AVAsset *asset, AVAudioMix *audioMix, NSDictionary *info) {
         
-        [asset calculateFilesizeWithCompletionBlock:^(CGFloat fileSize, NSError *error) {
+        [asset calculateFileSizeInBytesWithCompletionBlock:^(uint64_t fileSizeInBytes, NSError *error) {
             
             if (completionBlock)
             {
                 NSError *error = info[PHImageErrorKey];
-                completionBlock(fileSize, error);
+                completionBlock(fileSizeInBytes, error);
             }
 
         }];
