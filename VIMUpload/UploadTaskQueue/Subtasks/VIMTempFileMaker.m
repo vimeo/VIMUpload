@@ -303,7 +303,7 @@
 - (BOOL)checkDiskSpaceForURLAsset:(AVAsset *)asset error:(NSError **)error
 {
     uint64_t availableDiskSpace = [self availableDiskSpace];
-    uint64_t filesize = [asset calculateFilesize];
+    uint64_t filesize = [asset calculateFileSizeInBytes];
     if (filesize > availableDiskSpace && availableDiskSpace > 0)
     {
         *error = [NSError errorWithDomain:VIMTempFileMakerErrorDomain code:VIMUploadErrorCodeInsufficientLocalStorage userInfo:@{NSLocalizedDescriptionKey : @"Not enough free disk space to copy video to temp directory."}];

@@ -30,7 +30,7 @@
 
 @class VIMVideoMetadata;
 
-typedef void(^FileSizeCompletionBlock)(CGFloat fileSize, NSError * __nullable error);
+typedef void(^FileSizeInMegabytesCompletionBlock)(CGFloat fileSizeInMegabytes, NSError * __nullable error);
 typedef void(^ImageCompletionBlock)(UIImage * __nullable image, NSError * __nullable error);
 
 @interface VIMVideoAsset : NSObject
@@ -56,7 +56,7 @@ typedef void(^ImageCompletionBlock)(UIImage * __nullable image, NSError * __null
 
 - (NSTimeInterval)duration;
 
-- (int32_t)fileSizeWithCompletionBlock:(nonnull FileSizeCompletionBlock)completionBlock;
+- (void)fileSizeInMegabytesWithCompletionBlock:(nonnull FileSizeInMegabytesCompletionBlock)completionBlock;
 - (int32_t)imageWithSize:(CGSize)size completionBlock:(nonnull ImageCompletionBlock)completionBlock;
 
 - (BOOL)isUploading;

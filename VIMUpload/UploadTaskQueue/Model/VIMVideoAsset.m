@@ -117,34 +117,32 @@
     return 0.0f;
 }
 
-- (int32_t)fileSizeWithCompletionBlock:(FileSizeCompletionBlock)completionBlock
+- (void)fileSizeInMegabytesWithCompletionBlock:(nonnull FileSizeInMegabytesCompletionBlock)completionBlock;
 {
     if (self.phAsset)
     {
-        return [self.phAsset calculateFilesizeWithCompletionBlock:^(CGFloat fileSize, NSError *error) {
+        [self.phAsset calculateFileSizeInBytesWithCompletionBlock:^(uint64_t fileSizeInBytes, NSError *error) {
 
             if (completionBlock)
             {
-                fileSize = fileSize / (1024.0 * 1024.0);
-                completionBlock(fileSize, error);
+                CGFloat fileSizeInMegabytes = fileSizeInBytes / (1024.0 * 1024.0);
+                completionBlock(fileSizeInMegabytes, error);
             }
 
         }];
     }
     else if (self.URLAsset)
     {
-        [self.URLAsset calculateFilesizeWithCompletionBlock:^(CGFloat fileSize, NSError *error) {
+        [self.URLAsset calculateFileSizeInBytesWithCompletionBlock:^(uint64_t fileSizeInBytes, NSError *error) {
             
             if (completionBlock)
             {
-                fileSize = fileSize / (1024.0 * 1024.0);
-                completionBlock(fileSize, error);
+                CGFloat fileSizeInMegabytes = fileSizeInBytes / (1024.0 * 1024.0);
+                completionBlock(fileSizeInMegabytes, error);
             }
 
         }];
     }
-    
-    return 0; // No need to return a cancellation handler for non PH requests [AH]
 }
 
 - (int32_t)imageWithSize:(CGSize)size completionBlock:(ImageCompletionBlock)completionBlock

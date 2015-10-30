@@ -97,24 +97,24 @@ static const NSString *VIMUploadFileTaskName = @"FILE_UPLOAD";
 
         return;
     }
-    
+
     NSError *error = nil;
     NSMutableURLRequest *request = [self.sessionManager.requestSerializer requestWithMethod:@"PUT" URLString:self.destination parameters:nil error:&error];
     if (error)
     {
         self.error = [NSError errorWithDomain:VIMUploadFileTaskErrorDomain code:error.code userInfo:error.userInfo];
-        
+
         [self taskDidComplete];
-        
+
         return;
     }
-    
+
     NSURL *sourceURL = [NSURL fileURLWithPath:self.source];
     
     AVURLAsset *URLAsset = [AVURLAsset assetWithURL:sourceURL];
-    CGFloat filesize = [URLAsset calculateFilesize];
+    uint64_t filesize = [URLAsset calculateFileSizeInBytes];
 
-    [request setValue:[NSString stringWithFormat:@"%.0f", filesize] forHTTPHeaderField:@"Content-Length"];
+    [request setValue:[NSString stringWithFormat:@"%llu", filesize] forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"video/mp4" forHTTPHeaderField:@"Content-Type"];
     
     NSProgress *progress = nil;

@@ -32,17 +32,17 @@
 
 @implementation AVAsset (Filesize)
 
-- (CGFloat)calculateFilesize
+- (uint64_t)calculateFileSizeInBytes
 {
-    __block CGFloat size = 0;
+    __block uint64_t size = 0;
     
     dispatch_group_t group = dispatch_group_create();
     
     dispatch_group_enter(group);
 
-    [self calculateFilesizeWithCompletionBlock:^(CGFloat fileSize, NSError *error) {
+    [self calculateFileSizeInBytesWithCompletionBlock:^(uint64_t fileSizeInBytes, NSError *error) {
         
-        size = fileSize;
+        size = fileSizeInBytes;
        
         dispatch_group_leave(group);
         
@@ -53,9 +53,9 @@
     return size;
 }
 
-- (void)calculateFilesizeWithCompletionBlock:(FileSizeCompletionBlock)completionBlock
+- (void)calculateFileSizeInBytesWithCompletionBlock:(FileSizeInBytesCompletionBlock)completionBlock
 {
-    CGFloat rawSize = 0;
+    uint64_t rawSize = 0;
     
     if ([self isKindOfClass:[AVURLAsset class]])
     {
@@ -65,7 +65,7 @@
         {
             [[[ALAssetsLibrary alloc] init] assetForURL:asset.URL resultBlock:^(ALAsset *asset) {
                 
-                long long sizeBytes = [[asset defaultRepresentation] size];
+                uint64_t sizeBytes = [[asset defaultRepresentation] size];
                 
                 if (completionBlock)
                 {
@@ -91,7 +91,7 @@
         
         if (success)
         {
-            rawSize = [size floatValue];
+            rawSize = [size unsignedLongLongValue];
         }
     }
     
