@@ -123,33 +123,36 @@ static const NSString *VIMActivateRecordTaskName = @"ACTIVATE";
     {
         return;
     }
-
-    if (task.error)
-    {
-        self.error = [NSError errorWithError:task.error domain:VIMActivateRecordTaskErrorDomain URLResponse:task.response];
-        
-        [self taskDidComplete];
-        
-        return;
-    }
-    
-    // Why would an invalid status code not be flagged with an NSError and caught in the above conditional? [AH] 9/14/2015
     
     NSHTTPURLResponse *HTTPResponse = ((NSHTTPURLResponse *)task.response);
-    if (HTTPResponse && (HTTPResponse.statusCode < 200 || HTTPResponse.statusCode > 299))
+    
+    NSString *location = [[HTTPResponse allHeaderFields] valueForKey:@"Location"];
+    
+    // If there was an error in the response
+    
+    if (HTTPResponse.statusCode < 200 || HTTPResponse.statusCode > 299)
     {
-        NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"Invalid status code.",
-                                   AFNetworkingOperationFailingURLResponseErrorKey: HTTPResponse};
-
-        self.error = [NSError errorWithDomain:VIMActivateRecordTaskErrorDomain code:0 userInfo:userInfo];
+        self.error = [NSError errorWithURLResponse:HTTPResponse domain:VIMActivateRecordTaskErrorDomain description:@"Invalid status code."];
         
         [self taskDidComplete];
-        
+
         return;
     }
+    
+    // If there was an internal error while executing the task. Check this after the HTTP response since task.error can be set for network errors on some OS versions
+    
+    else if (task.error)
+    {
+        self.error = [NSError errorWithError:task.error domain:VIMActivateRecordTaskErrorDomain];
+        
+        [self taskDidComplete];
 
-    NSString *location = [[HTTPResponse allHeaderFields] valueForKey:@"Location"];
-    if (!location)
+        return;
+    }
+    
+    // If the response header doesn't contain the required fields
+
+    else if (!location)
     {
         self.error = [NSError errorWithDomain:VIMActivateRecordTaskErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : @"Location header not provided."}];
         
@@ -159,7 +162,7 @@ static const NSString *VIMActivateRecordTaskName = @"ACTIVATE";
     }
     
     self.videoURI = location;
-
+    
     [self taskDidComplete];
 }
 
