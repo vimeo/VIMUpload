@@ -29,6 +29,7 @@
 #include "AVAsset+Filesize.h"
 #import "PHAsset+Filesize.h"
 #import "NSError+VIMUpload.h"
+#import "NSError+VIMNetworking.h"
 
 static const NSString *RecordCreationPath = @"/me/videos";
 static const NSString *VIMCreateRecordTaskName = @"CREATE";
@@ -39,6 +40,7 @@ static const NSString *VIMCreateRecordTaskName = @"CREATE";
 @property (nonatomic, strong, readwrite) AVURLAsset *URLAsset;
 @property (nonatomic, assign) BOOL canUploadFromSource;
 
+@property (nonatomic, strong) NSData *responseData;
 @property (nonatomic, strong) NSDictionary *responseDictionary;
 
 @property (nonatomic, copy, readwrite) NSString *localURI;
@@ -191,6 +193,9 @@ static const NSString *VIMCreateRecordTaskName = @"CREATE";
 
 #pragma mark - VIMNetworkTaskSessionManager Delegate
 
+// This method is not called if the task contains an error when returning from the background task framework, which may or may not be set depending on the operating system version (Apple bug?)
+// In the case of an error, only URLSession:task:didCompleteWithError is called and we don't have access the response body. [ghking] 10/6/15
+
 - (void)sessionManager:(VIMNetworkTaskSessionManager *)sessionManager downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishWithLocation:(NSURL *)location
 {
     if (downloadTask.taskIdentifier != self.backgroundTaskIdentifier)
@@ -198,67 +203,19 @@ static const NSString *VIMCreateRecordTaskName = @"CREATE";
         return;
     }
     
-    // Removing these checks to catch only 1 error here: error parsing JSON from NSData object.
-    // In order to allow the taskDidComplete: method to catch all other errors.
-    // Seems like this will give us access to response data etc. automatically. [AH] 9/15/2015
-
-//    if (downloadTask.error)
-//    {
-//        self.error = [NSError errorWithError:downloadTask.error domain:VIMCreateRecordTaskErrorDomain URLResponse:downloadTask.response];
-//        
-//        return;
-//    }
-//    
-//    NSData *data = nil;
-//    if (location)
-//    {
-//        data = [NSData dataWithContentsOfURL:location];
-//    }
-//
-//    // Why would an invalid status code not be flagged with an NSError and caught in the above conditional?
-//    // Currently we are seeing errors caught by this check rather than the one above. [AH] 9/14/2015
-//
-//    NSHTTPURLResponse *HTTPResponse = ((NSHTTPURLResponse *)downloadTask.response);
-//    if (HTTPResponse && (HTTPResponse.statusCode < 200 || HTTPResponse.statusCode > 299))
-//    {
-//        NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:@{NSLocalizedDescriptionKey : @"Invalid status code.",
-//                                                                                       AFNetworkingOperationFailingURLResponseErrorKey: HTTPResponse}];
-//        
-//        if (data)
-//        {
-//            userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] = data;
-//        }
-//        
-//        self.error = [NSError errorWithDomain:VIMCreateRecordTaskErrorDomain code:0 userInfo:userInfo];
-//        
-//        return;
-//    }
-//    
-//    if (location == nil)
-//    {
-//        self.error = [NSError errorWithDomain:VIMCreateRecordTaskErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : @"No location provided."}];
-//        
-//        return;
-//    }
-//    
-//    if (data == nil)
-//    {
-//        self.error = [NSError errorWithDomain:VIMCreateRecordTaskErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : @"No file at location."}];
-//        
-//        return;
-//    }
-    
-    NSData *data = nil;
     if (location)
     {
-        data = [NSData dataWithContentsOfURL:location];
+        self.responseData = [NSData dataWithContentsOfURL:location];
     }
 
     NSDictionary *dictionary = nil;
-    if (data)
+    
+    if (self.responseData)
     {
         NSError *error = nil;
-        dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+        
+        dictionary = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingAllowFragments error:&error];
+        
         if (error)
         {
             self.error = [NSError errorWithDomain:VIMCreateRecordTaskErrorDomain code:error.code userInfo:error.userInfo];
@@ -283,28 +240,16 @@ static const NSString *VIMCreateRecordTaskName = @"CREATE";
     if (self.state == TaskStateCancelled || self.state == TaskStateSuspended)
     {
         // TODO: do we need to delete the local file when suspended? [AH]
-
-        return;
-    }
-
-    if (task.error)
-    {
-//        // TODO: Do we need to manually extract this? And manually add it to the error? [AH] 9/15/2015
-//        NSData *data = nil;
-//        if (self.responseDictionary)
-//        {
-//            data = [NSJSONSerialization dataWithJSONObject:self.responseDictionary options:NSJSONWritingPrettyPrinted error:nil];
-//        }
-        
-        self.error = [NSError errorWithError:task.error domain:VIMCreateRecordTaskErrorDomain URLResponse:task.response];
-        
-        [self taskDidComplete];
         
         return;
     }
+    
+    NSHTTPURLResponse *HTTPResponse = ((NSHTTPURLResponse *)task.response);
 
-    // The only error that this could possibly be would result when attempting to parse JSON out of NSData
-    // [AH] 9/15/2015
+    NSString *uploadURI = [self.responseDictionary objectForKey:@"upload_link_secure"];
+    NSString *activationURI = [self.responseDictionary objectForKey:@"complete_uri"];
+    
+    // If there is an existing error from parsing the response body JSON
     
     if (self.error)
     {
@@ -312,21 +257,42 @@ static const NSString *VIMCreateRecordTaskName = @"CREATE";
         
         return;
     }
-
-    NSString *uploadURI = [self.responseDictionary objectForKey:@"upload_link_secure"];
-    NSString *activationURI = [self.responseDictionary objectForKey:@"complete_uri"];
-    if (uploadURI == nil || activationURI == nil)
+    
+    // If there was an error in the response (such as a quota breach)
+    
+    else if (HTTPResponse.statusCode < 200 || HTTPResponse.statusCode > 299)
     {
-        NSString *description = [NSString stringWithFormat:@"Reponse did not include upload_link_secure or complete_uri. (%@)", [self.responseDictionary description]];
-        self.error = [NSError errorWithDomain:VIMCreateRecordTaskErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : description}];
+        self.error = [NSError errorWithURLResponse:HTTPResponse domain:VIMCreateRecordTaskErrorDomain description:self.responseDictionary[VimeoUserMessageKey]];
+        
+        [self taskDidComplete];
 
+        return;
+    }
+    
+    // If there was an internal error while executing the task. Check this after the HTTP response since task.error can be set for network errors on some OS versions (see above)
+
+    else if (task.error)
+    {
+        self.error = [NSError errorWithError:task.error domain:VIMCreateRecordTaskErrorDomain];
+        
+        [self taskDidComplete];
+
+        return;
+    }
+    
+    // If the response body doesn't contain the required fields
+
+    else if (uploadURI == nil || activationURI == nil)
+    {
+        self.error = [NSError errorWithDomain:VIMCreateRecordTaskErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : @"Response did not include upload_link_secure or complete_uri."}];
+        
         [self taskDidComplete];
         
         return;
     }
-
+    
     [VIMTaskQueueDebugger postLocalNotificationWithContext:self.sessionManager.session.configuration.identifier message:@"COPY started"];
-
+    
     [self tempFileWithCompletionBlock:^(NSString *path, NSError *error) {
         
         if (self.state == TaskStateCancelled || self.state == TaskStateSuspended)
@@ -339,7 +305,7 @@ static const NSString *VIMCreateRecordTaskName = @"CREATE";
         if (error)
         {
             [VIMTaskQueueDebugger postLocalNotificationWithContext:self.sessionManager.session.configuration.identifier message:@"COPY failed"];
-
+            
             [[[NSFileManager alloc] init] removeItemAtPath:path error:NULL];
             
             self.error = error;
@@ -350,7 +316,7 @@ static const NSString *VIMCreateRecordTaskName = @"CREATE";
         }
         
         [VIMTaskQueueDebugger postLocalNotificationWithContext:self.sessionManager.session.configuration.identifier message:@"COPY succeeded"];
-
+        
         self.localURI = path;
         self.uploadURI = uploadURI;
         self.activationURI = activationURI;

@@ -25,6 +25,7 @@
 //
 
 #import "NSError+VIMUpload.h"
+#import "NSError+VIMNetworking.h"
 #import "AFNetworking.h"
 
 NSString *const VIMTempFileMakerErrorDomain = @"VIMTempFileMakerErrorDomain";
@@ -35,36 +36,35 @@ NSString *const VIMActivateRecordTaskErrorDomain = @"VIMActivateRecordTaskErrorD
 
 @implementation NSError (VIMUpload)
 
-+ (NSError *)errorWithError:(NSError *)error domain:(NSString *)domain URLResponse:(NSURLResponse *)response
++ (NSError *)errorWithError:(NSError *)error domain:(NSString *)domain
 {
     if (error == nil)
     {
         return nil;
     }
     
+    // TODO: Modify this so we're adding a custom domain rather than overwriting the original domain [ghking] 10/6/15
+    
+    return [NSError errorWithDomain:domain code:error.code userInfo:error.userInfo];
+}
+
++ (NSError *)errorWithURLResponse:(NSURLResponse *)response domain:(NSString *)domain description:(NSString *)description
+{
+    if (response == nil)
+    {
+        return nil;
+    }
+    
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
     
-    if (error.userInfo)
+    if (description)
     {
-        [userInfo addEntriesFromDictionary:error.userInfo];
+        userInfo[NSLocalizedDescriptionKey] = description;
     }
     
-    if (response && userInfo[AFNetworkingOperationFailingURLResponseErrorKey] == nil)
-    {
-        userInfo[AFNetworkingOperationFailingURLResponseErrorKey] = response;
-    }
-    
-//    if (data && userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] == nil)
-//    {
-//        userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] = data;
-//    }
-    
-    if (domain == nil)
-    {
-        domain = error.domain;
-    }
-    
-    return [NSError errorWithDomain:domain code:error.code userInfo:userInfo];
+    userInfo[AFNetworkingOperationFailingURLResponseErrorKey] = response;
+
+    return [NSError errorWithDomain:domain code:0 userInfo:userInfo];
 }
 
 - (BOOL)isInsufficientLocalStorageError

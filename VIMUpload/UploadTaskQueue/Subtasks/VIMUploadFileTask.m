@@ -187,20 +187,25 @@ static const NSString *VIMUploadFileTaskName = @"FILE_UPLOAD";
     {
         return;
     }
+    
+    NSHTTPURLResponse *HTTPResponse = ((NSHTTPURLResponse *)task.response);
+    
+    // If there was an error in the response
 
-    if (task.error)
+    if (HTTPResponse.statusCode < 200 || HTTPResponse.statusCode > 299)
     {
-        self.error = [NSError errorWithError:task.error domain:VIMUploadFileTaskErrorDomain URLResponse:task.response];
+        self.error = [NSError errorWithURLResponse:HTTPResponse domain:VIMUploadFileTaskErrorDomain description:@"Invalid status code."];
         
         [self taskDidComplete];
         
         return;
     }
     
-    NSHTTPURLResponse *HTTPResponse = ((NSHTTPURLResponse *)task.response);
-    if (HTTPResponse.statusCode < 200 || HTTPResponse.statusCode > 299)
+    // If there was an internal error while executing the task. Check this after the HTTP response since task.error can be set for network errors on some OS versions (see above)
+    
+    else if (task.error)
     {
-        self.error = [NSError errorWithDomain:VIMUploadFileTaskErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : @"Invalid status code."}];
+        self.error = [NSError errorWithError:task.error domain:VIMUploadFileTaskErrorDomain];
         
         [self taskDidComplete];
         

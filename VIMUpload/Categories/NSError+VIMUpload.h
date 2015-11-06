@@ -39,7 +39,9 @@ extern NSString *const VIMActivateRecordTaskErrorDomain;
 
 @interface NSError (VIMUpload)
 
-+ (NSError *)errorWithError:(NSError *)error domain:(NSString *)domain URLResponse:(NSURLResponse *)response;
++ (NSError *)errorWithError:(NSError *)error domain:(NSString *)domain;
+
++ (NSError *)errorWithURLResponse:(NSURLResponse *)response domain:(NSString *)domain description:(NSString *)description;
 
 - (BOOL)isInsufficientLocalStorageError;
 
