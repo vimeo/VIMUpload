@@ -192,6 +192,8 @@ static const NSString *VIMCreateRecordTaskName = @"CREATE";
 #pragma mark - VIMNetworkTaskSessionManager Delegate
 
 // This method is not called if the task contains an error when returning from the background task framework, which may or may not be set depending on the operating system version (Apple bug?)
+// iOS 8 - task.error is not nil, this method is not called.
+// iOS 9 - task.error is nil, this method is called.
 // In the case of an error, only URLSession:task:didCompleteWithError is called and we don't have access the response body. [ghking] 10/6/15
 
 - (void)sessionManager:(VIMNetworkTaskSessionManager *)sessionManager downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishWithLocation:(NSURL *)location
