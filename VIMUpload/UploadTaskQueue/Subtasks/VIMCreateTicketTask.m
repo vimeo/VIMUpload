@@ -29,7 +29,6 @@
 #include "AVAsset+Filesize.h"
 #import "PHAsset+Filesize.h"
 #import "NSError+VIMUpload.h"
-#import "NSError+VIMNetworking.h"
 
 static const NSString *RecordCreationPath = @"/me/videos";
 static const NSString *VIMCreateRecordTaskName = @"CREATE";
@@ -263,7 +262,7 @@ static const NSString *VIMCreateRecordTaskName = @"CREATE";
     
     else if (HTTPResponse.statusCode < 200 || HTTPResponse.statusCode > 299)
     {
-        self.error = [NSError errorWithURLResponse:HTTPResponse domain:VIMCreateRecordTaskErrorDomain description:self.responseDictionary[VimeoUserMessageKey]];
+        self.error = [NSError errorWithURLResponse:HTTPResponse domain:VIMCreateRecordTaskErrorDomain description:self.responseDictionary[@"error"]];
         
         [self taskDidComplete];
 
