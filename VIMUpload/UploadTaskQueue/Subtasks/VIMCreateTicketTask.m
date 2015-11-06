@@ -40,7 +40,6 @@ static const NSString *VIMCreateRecordTaskName = @"CREATE";
 @property (nonatomic, strong, readwrite) AVURLAsset *URLAsset;
 @property (nonatomic, assign) BOOL canUploadFromSource;
 
-@property (nonatomic, strong) NSData *responseData;
 @property (nonatomic, strong) NSDictionary *responseDictionary;
 
 @property (nonatomic, copy, readwrite) NSString *localURI;
@@ -203,18 +202,20 @@ static const NSString *VIMCreateRecordTaskName = @"CREATE";
         return;
     }
     
+    NSData *data = nil;
+    
     if (location)
     {
-        self.responseData = [NSData dataWithContentsOfURL:location];
+        data = [NSData dataWithContentsOfURL:location];
     }
 
     NSDictionary *dictionary = nil;
     
-    if (self.responseData)
+    if (data)
     {
         NSError *error = nil;
         
-        dictionary = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingAllowFragments error:&error];
+        dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
         
         if (error)
         {
