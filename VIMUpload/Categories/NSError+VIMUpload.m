@@ -25,7 +25,6 @@
 //
 
 #import "NSError+VIMUpload.h"
-#import "NSError+VIMNetworking.h"
 #import "AFNetworking.h"
 
 NSString *const VIMTempFileMakerErrorDomain = @"VIMTempFileMakerErrorDomain";
