@@ -1,14 +1,13 @@
 Pod::Spec.new do |s|
 
   s.name         = "VIMUpload"
-  s.version      = "1.1.1"
+  s.version      = "1.1.2"
   s.summary      = "The Vimeo iOS Upload SDK"
   s.description  = <<-DESC
                    VIMUpload is an Objective-C library that enables upload of videos to Vimeo.
                    DESC
 
   s.homepage     = "https://github.com/vimeo/VIMUpload"
-  s.license      = "MIT (example)"
   s.license      = { :type => "MIT", :file => "LICENSE" }
 
   s.authors = { "Alfie Hanssen" => "alfiehanssen@gmail.com",
