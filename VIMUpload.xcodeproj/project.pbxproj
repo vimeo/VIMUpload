@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		38E9097F70BD083CD16C086D /* libPods-VIMUpload.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 709F06A525389B1B4E96315A /* libPods-VIMUpload.a */; };
 		500F465A1BA2003F000EA6B4 /* VIMUploadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 500F46591BA2003F000EA6B4 /* VIMUploadTests.m */; };
-		500F465C1BA2003F000EA6B4 /* libVIMUpload.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 509F94191B976F11002DE92E /* libVIMUpload.a */; settings = {ASSET_TAGS = (); }; };
+		500F465C1BA2003F000EA6B4 /* libVIMUpload.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 509F94191B976F11002DE92E /* libVIMUpload.a */; };
 		509F94591B976F75002DE92E /* AFHTTPSessionManager+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F94271B976F75002DE92E /* AFHTTPSessionManager+Extensions.m */; };
 		509F945A1B976F75002DE92E /* AVAsset+Filesize.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F94291B976F75002DE92E /* AVAsset+Filesize.m */; };
 		509F945B1B976F75002DE92E /* NSError+VIMUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F942B1B976F75002DE92E /* NSError+VIMUpload.m */; };
@@ -32,6 +32,7 @@
 		509F946C1B976F75002DE92E /* VIMNetworkTaskSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F94541B976F75002DE92E /* VIMNetworkTaskSessionManager.m */; };
 		509F946D1B976F75002DE92E /* VIMTaskQueueDebugger.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F94561B976F75002DE92E /* VIMTaskQueueDebugger.m */; };
 		509F946E1B976F75002DE92E /* VIMUploadTaskQueueTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F94581B976F75002DE92E /* VIMUploadTaskQueueTracker.m */; };
+		9AF774BCFDBCBBA5D903211E /* libPods-VIMUploadTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 507DA896F9663BE9F57977C9 /* libPods-VIMUploadTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		500F46571BA2003F000EA6B4 /* VIMUploadTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VIMUploadTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		500F46591BA2003F000EA6B4 /* VIMUploadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIMUploadTests.m; sourceTree = "<group>"; };
 		500F465B1BA2003F000EA6B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		507DA896F9663BE9F57977C9 /* libPods-VIMUploadTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VIMUploadTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		509F94191B976F11002DE92E /* libVIMUpload.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVIMUpload.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		509F94261B976F75002DE92E /* AFHTTPSessionManager+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AFHTTPSessionManager+Extensions.h"; sourceTree = "<group>"; };
 		509F94271B976F75002DE92E /* AFHTTPSessionManager+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AFHTTPSessionManager+Extensions.m"; sourceTree = "<group>"; };
@@ -109,6 +111,8 @@
 		509F94571B976F75002DE92E /* VIMUploadTaskQueueTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMUploadTaskQueueTracker.h; sourceTree = "<group>"; };
 		509F94581B976F75002DE92E /* VIMUploadTaskQueueTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMUploadTaskQueueTracker.m; sourceTree = "<group>"; };
 		709F06A525389B1B4E96315A /* libPods-VIMUpload.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VIMUpload.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		94923D564577848779542E25 /* Pods-VIMUploadTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIMUploadTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VIMUploadTests/Pods-VIMUploadTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B5FA339920D10225E54D7C76 /* Pods-VIMUploadTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIMUploadTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VIMUploadTests/Pods-VIMUploadTests.release.xcconfig"; sourceTree = "<group>"; };
 		FBE094916258D10082814BC3 /* Pods-VIMUpload.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIMUpload.release.xcconfig"; path = "Pods/Target Support Files/Pods-VIMUpload/Pods-VIMUpload.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,6 +122,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				500F465C1BA2003F000EA6B4 /* libVIMUpload.a in Frameworks */,
+				9AF774BCFDBCBBA5D903211E /* libPods-VIMUploadTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				709F06A525389B1B4E96315A /* libPods-VIMUpload.a */,
+				507DA896F9663BE9F57977C9 /* libPods-VIMUploadTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -275,6 +281,8 @@
 			children = (
 				20331A1631E8A2C415F7BF15 /* Pods-VIMUpload.debug.xcconfig */,
 				FBE094916258D10082814BC3 /* Pods-VIMUpload.release.xcconfig */,
+				94923D564577848779542E25 /* Pods-VIMUploadTests.debug.xcconfig */,
+				B5FA339920D10225E54D7C76 /* Pods-VIMUploadTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -286,9 +294,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 500F465F1BA2003F000EA6B4 /* Build configuration list for PBXNativeTarget "VIMUploadTests" */;
 			buildPhases = (
+				161A7A7BA052EA627A03159B /* Check Pods Manifest.lock */,
 				500F46531BA2003F000EA6B4 /* Sources */,
 				500F46541BA2003F000EA6B4 /* Frameworks */,
 				500F46551BA2003F000EA6B4 /* Resources */,
+				7F3751B13FFCF5A6C7540B46 /* Embed Pods Frameworks */,
+				C1BCA97F139B39B5E9EC4810 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -365,6 +376,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		161A7A7BA052EA627A03159B /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		1D99275B0F01E9323815B5DC /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -378,6 +404,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VIMUpload/Pods-VIMUpload-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F3751B13FFCF5A6C7540B46 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VIMUploadTests/Pods-VIMUploadTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C1BCA97F139B39B5E9EC4810 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VIMUploadTests/Pods-VIMUploadTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EFB766119FB7783BA45589E2 /* Check Pods Manifest.lock */ = {
@@ -448,6 +504,7 @@
 /* Begin XCBuildConfiguration section */
 		500F46601BA2003F000EA6B4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94923D564577848779542E25 /* Pods-VIMUploadTests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = VIMUploadTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -458,6 +515,7 @@
 		};
 		500F46611BA2003F000EA6B4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5FA339920D10225E54D7C76 /* Pods-VIMUploadTests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = VIMUploadTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -574,6 +632,7 @@
 				500F46611BA2003F000EA6B4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		509F94141B976F11002DE92E /* Build configuration list for PBXProject "VIMUpload" */ = {
 			isa = XCConfigurationList;

@@ -27,12 +27,12 @@
 #import <Foundation/Foundation.h>
 #import <Photos/Photos.h>
 
-typedef void(^FileSizeCompletionBlock)(CGFloat fileSize, NSError * __nullable error);
+typedef void(^FileSizeInBytesCompletionBlock)(uint64_t fileSizeInBytes, NSError * __nullable error);
 
 @interface PHAsset (Filesize)
 
-- (CGFloat)calculateFilesize; // Synchronous
+- (uint64_t)calculateFileSizeInBytes; // Synchronous
 
-- (int32_t)calculateFilesizeWithCompletionBlock:(nonnull FileSizeCompletionBlock)completionBlock;
+- (void)calculateFileSizeInBytesWithCompletionBlock:(nonnull FileSizeInBytesCompletionBlock)completionBlock;
 
 @end

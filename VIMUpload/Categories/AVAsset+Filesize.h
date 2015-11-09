@@ -27,12 +27,12 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVAsset.h>
 
-typedef void(^FileSizeCompletionBlock)(CGFloat fileSize, NSError *error);
+typedef void(^FileSizeInBytesCompletionBlock)(uint64_t fileSizeInBytes, NSError *error);
 
 @interface AVAsset (Filesize)
 
-- (CGFloat)calculateFilesize; // Synchronous
+- (uint64_t)calculateFileSizeInBytes; // Synchronous
 
-- (void)calculateFilesizeWithCompletionBlock:(FileSizeCompletionBlock)completionBlock;
+- (void)calculateFileSizeInBytesWithCompletionBlock:(FileSizeInBytesCompletionBlock)completionBlock;
 
 @end
