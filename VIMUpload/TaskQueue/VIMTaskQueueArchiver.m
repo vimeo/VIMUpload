@@ -25,6 +25,7 @@
 //
 
 #import "VIMTaskQueueArchiver.h"
+#import "NSURL+Extensions.h"
 
 static NSString *const ArchiveExtension = @"archive";
 static NSString *const TaskQueueDirectory = @"task-queue";
@@ -119,45 +120,13 @@ static NSString *const TaskQueueDirectory = @"task-queue";
 
 - (NSString *)archivePathForKey:(NSString *)key
 {
-    NSString *basePath = [self archiveDirectory];
+    NSURL *baseURL = [NSURL taskQueueURLWithDirectoryName:TaskQueueDirectory sharedContainerIdentifier:self.sharedContainerID];
     
     NSString *filename = [key stringByAppendingPathExtension:ArchiveExtension];
     
-    NSString *path = [basePath stringByAppendingPathComponent:filename];
+    NSURL *URL = [baseURL URLByAppendingPathComponent:filename];
     
-    return path;
-}
-
-- (NSString *)archiveDirectory
-{
-    NSURL *groupURL = nil;
-    
-    if (self.sharedContainerID)
-    {
-        groupURL = [[NSFileManager new] containerURLForSecurityApplicationGroupIdentifier:self.sharedContainerID];
-    }
-    
-    if (groupURL == nil)
-    {
-        // If there's no shared container (as in iOS7), just use the Documents dir
-        NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-        
-        groupURL = [NSURL URLWithString:documentsDirectory];
-    }
-    
-    NSString *groupPath = [[groupURL path] stringByAppendingPathComponent:TaskQueueDirectory];
-    
-    NSError *error = nil;
-    if (![[NSFileManager defaultManager] createDirectoryAtPath:groupPath withIntermediateDirectories:YES attributes:nil error:&error])
-    {
-        NSLog(@"Unable to create export directory: %@", error);
-        
-        // TODO: This is also a problem, we shouldn't be using temp directory for this, and the directory wont exist [AH]
-        
-        return [NSTemporaryDirectory() stringByAppendingPathComponent:TaskQueueDirectory];
-    }
-    
-    return groupPath;
+    return URL.absoluteString;
 }
 
 @end
