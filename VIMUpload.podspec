@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "VIMUpload"
-  s.version      = "1.2.0"
+  s.version      = "1.2.1"
   s.summary      = "The Vimeo iOS Upload SDK"
   s.description  = <<-DESC
                    VIMUpload is an Objective-C library that enables upload of videos to Vimeo.
