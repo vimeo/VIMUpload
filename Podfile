@@ -1,7 +1,7 @@
 platform :ios, '7.0'
 
 def shared_pods
-    pod 'AFNetworking', '2.6.1'
+    pod 'AFNetworking', '2.6.3'
 end
 
 target 'VIMUpload' do
