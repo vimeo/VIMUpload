@@ -166,7 +166,7 @@ Ensure that uploads only occur when connected via wifi...or not. If `cellularUpl
 [MYUploadTaskQueueSubclass sharedAppQueue].cellularUploadEnabled = NO;
 ```
 
-Add video metadata to an enqueued or in-progress upload.
+Add video metadata to an enqueued or in-progress upload. `VIMAPIClient` and other general Vimeo API functionality is available in [VIMNetworking](https://github.com/vimeo/VIMNetworking).
 
 ```Objective-C
 VIMVideoAsset *videoAsset = ...;
