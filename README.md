@@ -48,7 +48,7 @@ If you're also including `VIMNetworking` in your project / target, note that bot
 
 ## Initialization
 
-Subclass `VIMTaskQueue` and implement a singleton object:
+Subclass `VIMUploadTaskQueue` and implement a singleton object:
 
 ```Objective-C
 + (instancetype)sharedAppQueue
