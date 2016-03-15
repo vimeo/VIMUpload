@@ -1,4 +1,4 @@
-<font color="red">This library has been deprecated, use [VimeoUpload](https://github.com/vimeo/VimeoUpload/) instead.</font> 
+This library has been deprecated, use [VimeoUpload](https://github.com/vimeo/VimeoUpload/) instead.
 
 # VIMUpload
 
