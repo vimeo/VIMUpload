@@ -1,3 +1,5 @@
+<p style='color:red'>This library has been deprecated, use [VimeoUpload](https://github.com/vimeo/VimeoUpload/) instead.</p> 
+
 # VIMUpload
 
 `VIMUpload` is an Objective-C library that enables upload of videos to Vimeo. Its core component is a serial task queue that executes composite tasks (tasks with subtasks). 
