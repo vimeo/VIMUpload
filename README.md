@@ -1,5 +1,5 @@
 :warning::warning::warning:  
-This library has been deprecated and will be removed from Github on February 15, 2016. Use [VimeoUpload](https://github.com/vimeo/VimeoUpload/) instead.  
+This library has been deprecated and will be removed from Github on February 15, 2017. Use [VimeoUpload](https://github.com/vimeo/VimeoUpload/) instead.  
 :warning::warning::warning:
 
 # VIMUpload
