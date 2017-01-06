@@ -1,4 +1,4 @@
-This library has been deprecated, use [VimeoUpload](https://github.com/vimeo/VimeoUpload/) instead.
+##This library has been deprecated and will be removed from Github on February 15, 2016. Use [VimeoUpload](https://github.com/vimeo/VimeoUpload/) instead.
 
 # VIMUpload
 
